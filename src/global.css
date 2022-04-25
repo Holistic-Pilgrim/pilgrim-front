@@ -1,0 +1,31 @@
+@font-face {
+  font-family: alagard;
+  src: url(./assets/alagard.ttf);
+}
+
+body{
+  background-color: #E9D2B8;
+  font-family: alagard;
+}
+
+.header{
+  background: url("./assets/menu.png");
+  min-height: 130px;
+}
+.footer{
+  background: url("./assets/footer.png");
+  min-height: 130px;
+}
+
+.nav-link{
+  font-size: 23px;
+  padding-right: 55px !important;
+}
+
+.pilgrim_detail{
+
+  background: url("./assets/sheet.png");
+  background-size: 100% 100%;
+  padding: 60px;
+  /*height: 606px*/
+}
