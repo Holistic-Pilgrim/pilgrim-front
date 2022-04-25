@@ -72395,7 +72395,7 @@ __exportStar(require("./browser-connect"), exports);
 require("error-polyfill");
 
 },{"./key_stores/browser-index":"../node_modules/near-api-js/lib/key_stores/browser-index.js","./common-index":"../node_modules/near-api-js/lib/common-index.js","./browser-connect":"../node_modules/near-api-js/lib/browser-connect.js","error-polyfill":"../node_modules/error-polyfill/index.js"}],"config.js":[function(require,module,exports) {
-const CONTRACT_NAME = undefined || 'dev-1650424777200-62369808326356';
+const CONTRACT_NAME = 'dev-1650424777200-62369808326356';
 
 function getConfig(env) {
   switch (env) {
@@ -72479,7 +72479,7 @@ var _config = _interopRequireDefault(require("./config"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const nearConfig = (0, _config.default)("development" || 'development'); // Initialize contract & set global variables
+const nearConfig = (0, _config.default)('development'); // Initialize contract & set global variables
 
 async function initContract() {
   // Initialize connection to the NEAR testnet
@@ -75564,7 +75564,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63213" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57972" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
