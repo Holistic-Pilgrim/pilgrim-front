@@ -75034,9 +75034,9 @@ function Pilgrim() {
   const [allNft, setAllNft] = _react.default.useState([]);
 
   _react.default.useEffect(() => {
+    get_all_nft();
     if (!window.accountId) return;
     get_owned_nft();
-    get_all_nft();
   }, [window.accountId]);
 
   const get_owned_nft = async () => {
@@ -75564,7 +75564,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65192" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52705" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

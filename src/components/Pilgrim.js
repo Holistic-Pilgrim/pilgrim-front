@@ -10,9 +10,9 @@ function Pilgrim() {
   const [ownedNft, setOwnedNft] = React.useState([]);
   const [allNft, setAllNft] = React.useState([]);
   React.useEffect(() => {
+    get_all_nft();
     if (!window.accountId) return;
     get_owned_nft();
-    get_all_nft();
   }, [window.accountId]);
 
   const get_owned_nft = async () => {
