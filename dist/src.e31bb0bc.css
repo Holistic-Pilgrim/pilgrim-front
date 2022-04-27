@@ -31,10 +31,47 @@ body{
 
 .pilgrim_detail{
 
-  background: url("/sheet.6cd1ddf1.png");
+  background: url("/book.a93446c8.png");
   background-size: 100% 100%;
-  padding: 60px;
+  /*padding: 30px;*/
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 30px;
+  padding-bottom: 70px;
   /*height: 606px*/
 }
+
+.with_frame{
+  background-size: 100% 100% !important;
+}
+
+.with_frame2{
+  background: url("/frame-mini.300c2613.png");
+  background-size: 100% 100% !important;
+  line-height: 15px;
+}
+
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #543927 #fddbcb;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #fddbcb;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #543927;
+    border-radius: 10px;
+    border: 0px solid #ffffff;
+  }
 
 /*# sourceMappingURL=/src.e31bb0bc.css.map */

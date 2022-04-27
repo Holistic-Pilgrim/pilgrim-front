@@ -33,10 +33,10 @@ const Header = (props) => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto me-auto">
-              <Nav.Link href="/" className={token_id == null ? "active" : ""}>Home</Nav.Link>
+              <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/pilgrim/1">Holistic</Nav.Link>
               <Nav.Link href="/pilgrim/1">Lore</Nav.Link>
-              <Nav.Link href="/pilgrim/1" className={token_id != null ? "active" : ""}>Pilgrim</Nav.Link>
+              <Nav.Link href="/pilgrim/1">Pilgrim</Nav.Link>
             </Nav>
             <div className="d-flex">
               {connectionButton}

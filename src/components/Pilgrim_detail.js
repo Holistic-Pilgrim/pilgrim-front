@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom/client';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import HeaderTop from '../assets/header-top.png';
 import HeaderBot from '../assets/header-bot.png';
+import imgFrame from '../assets/frame.png';
+import imgAdvantages from '../assets/advantages.png';
 import {
   useParams
 } from "react-router-dom";
@@ -76,60 +78,99 @@ const PilgrimDetail = (props) => {
   if(isOwned){
     lorebox = (
       <>
-        <Form.Control as="textarea" rows={3} onChange={x => setTempStory(x.target.value)} defaultValue={tempstory} />
+        <Form.Control as="textarea" rows={12} onChange={x => setTempStory(x.target.value)} defaultValue={tempstory} />
         <br />
         <Button onClick={save_story}>Save Story</Button>
       </>
       )
   }else{
     lorebox = (
-      <div style={{overflowY: "auto", height: "250px"}}>
+      <p style={{overflowY: "auto", height: "300px", color: "#543927", whiteSpace: "pre-wrap"}}>
         {story}
-      </div>
+      </p>
       )
   }
 
   return (
     <div className="pilgrim py-5">
       <Container>  
-        <div className="py-5 text-center">     
-          <img src={HeaderTop} className="img-fluid" />
-            <h1>Pilgrims Lore</h1>
-          <img src={HeaderBot} className="img-fluid" />
-        </div>
         <Row className="pilgrim_detail">
-          <Col md={5} xs={12} className="py-3">
-            <img
-              src={`https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${token_id}.png`}
-              width="100%"
-              style={{ cursor: "pointer" }}
-              className="img-fluid"
-            />
+          <Col md={6} xs={6} className="py-3 px-4">
+            <Row className="justify-content-md-center">
+              <Col md={12} sm={12} className="text-center py-2">
+                <img src={HeaderTop} className="img-fluid" />
+                  <i style={{fontSize: "25px"}}>{metadata.title}</i>
+                <img src={HeaderBot} className="img-fluid" />
+              </Col>
+              <Col md={7} sm={12} className=" py-2">
+                <div className="with_frame"
+                style={{background: `url(https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${token_id}.png)`}}
+                >
+                  <img
+                    src={imgFrame}
+                    width="100%"
+                    style={{ cursor: "pointer" }}
+                    className="img-fluid"
+                  />
+                </div>
+              </Col>
+            </Row>
+            <Row className="pt-4">
+              <Col xs={6} className="py-2">
+                <div className="with_frame2 py-3 px-4">
+                  <Row>
+                    <Col xs={3}>
+                      <img src={imgAdvantages} className="img-fluid" />
+                    </Col>
+                    <Col xs={8}>
+                      <b style={{color: "#543927"}}>Advantages</b><br/><small>{(metadata.title)}</small>
+                    </Col>
+                  </Row>
+                </div>
+              </Col>
+              <Col xs={6} className="py-2">
+                <div className="with_frame2 py-3 px-4">
+                  <Row>
+                    <Col xs={3}>
+                      <img src={imgAdvantages} className="img-fluid" />
+                    </Col>
+                    <Col xs={8}>
+                      <b style={{color: "#543927"}}>Disadvantages</b><br/><small>{(metadata.title)}</small>
+                    </Col>
+                  </Row>
+                </div>
+              </Col>
+              <Col xs={6} className="py-2">
+                <div className="with_frame2 py-3 px-4">
+                  <Row>
+                    <Col xs={3}>
+                      <img src={imgAdvantages} className="img-fluid" />
+                    </Col>
+                    <Col xs={8}>
+                      <b style={{color: "#543927"}}>Skills</b><br/><small>{(metadata.title)}</small>
+                    </Col>
+                  </Row>
+                </div>
+              </Col>
+              <Col xs={6} className="py-2">
+                <div className="with_frame2 py-3 px-4">
+                  <Row>
+                    <Col xs={3}>
+                      <img src={imgAdvantages} className="img-fluid" />
+                    </Col>
+                    <Col xs={8}>
+                      <b style={{color: "#543927"}}>Pet</b><br/><small>{(metadata.title)}</small>
+                    </Col>
+                  </Row>
+                </div>
+              </Col>
+            </Row>
+            
           </Col>
-          <Col md={7} xs={12} className="py-3">
+          <Col md={6} xs={6} className="py-3 px-4">
             <Row>
               <Col xs={12}>
-                <b>Title :</b> {metadata.title}
-              </Col>
-
-              <Col xs={12}>
-                <b>Nickname :</b> {metadata.title}
-              </Col>
-
-              <Col xs={6}>
-                <b>Advantages :</b> {(metadata.advantages?.[0]?.name)}
-              </Col>
-              <Col xs={6}>
-                <b>Disadvantages :</b> {(metadata.disadvantages?.[0]?.name)}
-              </Col>
-              <Col xs={6}>
-                <b>Skills :</b> {(metadata.skills?.[0]?.name)}
-              </Col>
-              <Col xs={6}>
-                <b>Pet :</b> 
-              </Col>
-              <Col xs={12}>
-                <b>Lore :</b> <br / >
+                <b>Story :</b> <br / >
                   {lorebox}
               </Col>
             </Row>
