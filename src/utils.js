@@ -1,7 +1,7 @@
 import { connect, Contract, keyStores, WalletConnection } from 'near-api-js'
 import getConfig from './config'
 
-const nearConfig = getConfig('development')
+const nearConfig = getConfig(process.env.ENVIRONTMENT)
 
 // Initialize contract & set global variables
 export async function initContract() {
@@ -24,8 +24,8 @@ export async function initContract() {
   })
 
     //NFT CONTRACT
-    window.contract_nft = await new Contract(window.walletConnection.account(), "dev-1648654616642-62052394158601", {
-      viewMethods: ["nft_tokens_for_owner","nft_tokens","nft_total_supply"],
+    window.contract_nft = await new Contract(window.walletConnection.account(), process.env.NFT_CONTRACT_ID, {
+      viewMethods: ["nft_total_supply","nft_tokens_for_owner","nft_tokens","nft_metadata"],
       changeMethods: [""],
     });
 }

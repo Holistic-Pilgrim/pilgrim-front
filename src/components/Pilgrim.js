@@ -9,8 +9,13 @@ function Pilgrim() {
 
   const [ownedNft, setOwnedNft] = React.useState([]);
   const [allNft, setAllNft] = React.useState([]);
+  const [allSupply, setAllSupply] = React.useState(0);
   React.useEffect(() => {
-    get_all_nft();
+    // get_all_nft();
+    // Error Gas Limit
+
+
+    get_total_supply();
     if (!window.accountId) return;
     get_owned_nft();
   }, [window.accountId]);
@@ -21,8 +26,16 @@ function Pilgrim() {
   };
 
   const get_all_nft = async () => {
-    const all_nft = await window.contract_nft.nft_tokens();
-    setAllNft([...all_nft]);
+    // const all_nft = await window.contract_nft.nft_tokens();
+    // setAllNft([...all_nft]);
+    // Error Gas Limit
+  };
+
+  const get_total_supply = async () => {
+    const all_supply = await window.contract_nft.nft_total_supply();
+    setAllSupply(all_supply);
+    console.log(all_supply)
+    // Error Gas Limit
   };
 
   return (
@@ -32,16 +45,16 @@ function Pilgrim() {
           <h1>All Pilgrims</h1>
         <img src={HeaderBot} className="img-fluid" />
         <Row className="pt-5">
-        {allNft.slice(0, 18).map((nft) => {
+        {[...Array(Number(allSupply))].slice(0, 18).map((e, i) => {
           return(
             <Col md={2} xs={6} className="py-3">
-            <a href={`/pilgrim/${nft.token_id}`}>
+            <a href={`/pilgrim/${i}`}>
               <img
-                src={`https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${nft.token_id}.png`}
+                src={`https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${i}.png`}
                 width="100%"
                 style={{ cursor: "pointer" }}
                 className="img-fluid"
-                onClick={{}}
+                
               />
             </a>
           </Col>)

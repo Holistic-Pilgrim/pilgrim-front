@@ -68842,7 +68842,7 @@ __exportStar(require("./browser-connect"), exports);
 require("error-polyfill");
 
 },{"./key_stores/browser-index":"../node_modules/near-api-js/lib/key_stores/browser-index.js","./common-index":"../node_modules/near-api-js/lib/common-index.js","./browser-connect":"../node_modules/near-api-js/lib/browser-connect.js","error-polyfill":"../node_modules/error-polyfill/index.js"}],"config.js":[function(require,module,exports) {
-const CONTRACT_NAME = 'dev-1650424777200-62369808326356';
+const CONTRACT_NAME = "holisticbook.near";
 
 function getConfig(env) {
   switch (env) {
@@ -68926,7 +68926,7 @@ var _config = _interopRequireDefault(require("./config"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const nearConfig = (0, _config.default)('development'); // Initialize contract & set global variables
+const nearConfig = (0, _config.default)("mainnet"); // Initialize contract & set global variables
 
 async function initContract() {
   // Initialize connection to the NEAR testnet
@@ -68948,8 +68948,8 @@ async function initContract() {
     changeMethods: ['set_story']
   }); //NFT CONTRACT
 
-  window.contract_nft = await new _nearApiJs.Contract(window.walletConnection.account(), "dev-1648654616642-62052394158601", {
-    viewMethods: ["nft_tokens_for_owner", "nft_tokens", "nft_total_supply"],
+  window.contract_nft = await new _nearApiJs.Contract(window.walletConnection.account(), "623c2cd4294f600e58f46fa2.astrogenfunds.near", {
+    viewMethods: ["nft_total_supply", "nft_tokens_for_owner", "nft_tokens", "nft_metadata"],
     changeMethods: [""]
   });
 }
@@ -71478,8 +71478,12 @@ function Pilgrim() {
 
   const [allNft, setAllNft] = _react.default.useState([]);
 
+  const [allSupply, setAllSupply] = _react.default.useState(0);
+
   _react.default.useEffect(() => {
-    get_all_nft();
+    // get_all_nft();
+    // Error Gas Limit
+    get_total_supply();
     if (!window.accountId) return;
     get_owned_nft();
   }, [window.accountId]);
@@ -71491,9 +71495,15 @@ function Pilgrim() {
     setOwnedNft([...owned_nft]);
   };
 
-  const get_all_nft = async () => {
-    const all_nft = await window.contract_nft.nft_tokens();
-    setAllNft([...all_nft]);
+  const get_all_nft = async () => {// const all_nft = await window.contract_nft.nft_tokens();
+    // setAllNft([...all_nft]);
+    // Error Gas Limit
+  };
+
+  const get_total_supply = async () => {
+    const all_supply = await window.contract_nft.nft_total_supply();
+    setAllSupply(all_supply);
+    console.log(all_supply); // Error Gas Limit
   };
 
   return /*#__PURE__*/_react.default.createElement("div", {
@@ -71508,21 +71518,20 @@ function Pilgrim() {
     className: "img-fluid"
   }), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, {
     className: "pt-5"
-  }, allNft.slice(0, 18).map(nft => {
+  }, [...Array(Number(allSupply))].slice(0, 18).map((e, i) => {
     return /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
       md: 2,
       xs: 6,
       className: "py-3"
     }, /*#__PURE__*/_react.default.createElement("a", {
-      href: `/pilgrim/${nft.token_id}`
+      href: `/pilgrim/${i}`
     }, /*#__PURE__*/_react.default.createElement("img", {
-      src: `https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${nft.token_id}.png`,
+      src: `https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${i}.png`,
       width: "100%",
       style: {
         cursor: "pointer"
       },
-      className: "img-fluid",
-      onClick: {}
+      className: "img-fluid"
     })));
   }))));
 }
@@ -71596,6 +71605,8 @@ const PilgrimDetail = props => {
 
   const [isEdit, setIsEdit] = _react.default.useState(false);
 
+  const [isEditable, setEditable] = _react.default.useState(1);
+
   const [story, setStory] = _react.default.useState();
 
   const [tempstory, setTempStory] = _react.default.useState();
@@ -71613,7 +71624,7 @@ const PilgrimDetail = props => {
   const [conndata3, setConnData3] = _react.default.useState([]);
 
   _react.default.useEffect(() => {
-    get_all_nft();
+    // get_all_nft();
     get_story();
     get_params(token_id);
     if (!window.accountId) return;
@@ -71631,14 +71642,18 @@ const PilgrimDetail = props => {
         setPilgrimConn(JSON.parse(stry.nft_connection));
         setTempConn(JSON.parse(stry.nft_connection));
         get_conn_params(JSON.parse(stry.nft_connection));
-        console.log(stry.nft_connection);
+
+        if (stry.by != "akpiiz.testnet") {
+          setEditable(0);
+        }
       } else {
         setStory("Hello");
         setTempStory("Hello");
         setPilgrimConn([null, null, null, null]);
         setTempConn([null, null, null, null]);
         get_conn_params([null, null, null, null]);
-      }
+      } // console.log(isEditable)
+
     });
   };
 
@@ -71662,8 +71677,6 @@ const PilgrimDetail = props => {
   };
 
   const get_conn_params = async arr => {
-    console.log(arr);
-
     if (arr[0] > 0) {
       fetch(`https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${arr[0]}.json`).then(response => response.json()).then(jsonData => {
         setConnData0(jsonData);
@@ -71703,16 +71716,16 @@ const PilgrimDetail = props => {
     });
     await setOwnedNft([...owned_nft]);
 
-    if (window.accountId == "akpiiz.testnet") {
+    if (window.accountId == "akpiiz.near") {
       await setIsOwned(1);
     } else {
       await setIsOwned(owned_nft.filter(x => x.token_id == token_id).length);
     }
   };
 
-  const get_all_nft = async () => {
-    const all_nft = await window.contract_nft.nft_tokens();
-    setAllNft([...all_nft]);
+  const get_all_nft = async () => {// const all_nft = await window.contract_nft.nft_tokens();
+    // setAllNft([...all_nft]);
+    // Error Gas Limit
   };
 
   let lorebox;
@@ -71739,7 +71752,6 @@ const PilgrimDetail = props => {
     let newArr = [...tempConn];
     newArr[index] = val == '' ? null : Number(val);
     await setTempConn(newArr);
-    await console.log(tempConn);
   };
 
   function hidechar(val) {
@@ -71807,7 +71819,7 @@ const PilgrimDetail = props => {
     style: {
       color: "#543927"
     }
-  }, "Advantages"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata.title))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+  }, "Advantages"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata?.advantages?.[0].name))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     xs: 6,
     className: "py-2"
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -71823,7 +71835,7 @@ const PilgrimDetail = props => {
     style: {
       color: "#543927"
     }
-  }, "Disadvantages"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata.title))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+  }, "Disadvantages"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata?.disadvantages?.[0].name))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     xs: 6,
     className: "py-2"
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -71839,7 +71851,7 @@ const PilgrimDetail = props => {
     style: {
       color: "#543927"
     }
-  }, "Skills"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata.title))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+  }, "Skills"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata?.skills?.[0].name))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     xs: 6,
     className: "py-2"
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -71855,7 +71867,7 @@ const PilgrimDetail = props => {
     style: {
       color: "#543927"
     }
-  }, "Pet"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata.title))))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+  }, "Pet"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata?.pets?.[0].name))))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     md: 6,
     xs: 6,
     className: "py-3 px-4"
@@ -71908,7 +71920,7 @@ const PilgrimDetail = props => {
     className: "px-5"
   }, isOwned && isEdit ? /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
     onClick: save_story
-  }, "Save Story") : isOwned ? /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
+  }, "Save Story") : isOwned && isEditable ? /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
     onClick: e => setIsEdit(true)
   }, "Edit") : ""))))));
 };
@@ -72234,7 +72246,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51188" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53044" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

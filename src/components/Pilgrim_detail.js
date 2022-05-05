@@ -24,6 +24,7 @@ const PilgrimDetail = (props) => {
   const [metadata, setMetadata] = React.useState([]);
   const [isOwned, setIsOwned] = React.useState(0);
   const [isEdit, setIsEdit] = React.useState(false);
+  const [isEditable, setEditable] = React.useState(1);
   const [story, setStory] = React.useState()
   const [tempstory, setTempStory] = React.useState()
   const [pilgrimConn, setPilgrimConn] = React.useState([])
@@ -34,7 +35,7 @@ const PilgrimDetail = (props) => {
   const [conndata3, setConnData3] = React.useState([])
 
   React.useEffect(() => {
-    get_all_nft();
+    // get_all_nft();
     get_story();
     get_params(token_id);
     
@@ -52,7 +53,9 @@ const PilgrimDetail = (props) => {
           setPilgrimConn(JSON.parse(stry.nft_connection))
           setTempConn(JSON.parse(stry.nft_connection))
           get_conn_params(JSON.parse(stry.nft_connection))
-          console.log(stry.nft_connection)
+          if(stry.by != "akpiiz.testnet"){
+            setEditable(0)
+          }
         }else{
           setStory("Hello")
           setTempStory("Hello")
@@ -60,6 +63,7 @@ const PilgrimDetail = (props) => {
           setTempConn([null,null,null,null])
           get_conn_params([null,null,null,null])
         }
+        // console.log(isEditable)
       })
   }
 
@@ -89,7 +93,7 @@ const PilgrimDetail = (props) => {
   }
 
   const get_conn_params = async(arr) =>{
-    console.log(arr)
+
     if(arr[0]>0){
       fetch(`https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${arr[0]}.json`)
       .then(response => response.json())
@@ -135,7 +139,7 @@ const PilgrimDetail = (props) => {
   const get_owned_nft = async () => {
     const owned_nft = await window.contract_nft.nft_tokens_for_owner({ account_id: window.accountId });
     await setOwnedNft([...owned_nft]);
-    if(window.accountId=="akpiiz.testnet"){
+    if(window.accountId==process.env.OWNER_ADDRESS){
       await setIsOwned(1)
     }else{
       await setIsOwned(owned_nft.filter(x => x.token_id == token_id ).length)
@@ -143,8 +147,9 @@ const PilgrimDetail = (props) => {
   };
 
   const get_all_nft = async () => {
-    const all_nft = await window.contract_nft.nft_tokens();
-    setAllNft([...all_nft]);
+    // const all_nft = await window.contract_nft.nft_tokens();
+    // setAllNft([...all_nft]);
+    // Error Gas Limit
   };
 
   let lorebox;
@@ -167,7 +172,6 @@ const PilgrimDetail = (props) => {
     newArr[index] = (val=='' ? null : Number(val)) ;
 
     await setTempConn(newArr)
-    await console.log(tempConn)
   }
 
   function hidechar(val){
@@ -210,7 +214,7 @@ const PilgrimDetail = (props) => {
                       <img src={imgAdvantages} className="img-fluid" />
                     </Col>
                     <Col xs={8}>
-                      <b style={{color: "#543927"}}>Advantages</b><br/><small>{(metadata.title)}</small>
+                      <b style={{color: "#543927"}}>Advantages</b><br/><small>{(metadata?.advantages?.[0].name)}</small>
                     </Col>
                   </Row>
                 </div>
@@ -222,7 +226,7 @@ const PilgrimDetail = (props) => {
                       <img src={imgDisadvantages} className="img-fluid" />
                     </Col>
                     <Col xs={8}>
-                      <b style={{color: "#543927"}}>Disadvantages</b><br/><small>{(metadata.title)}</small>
+                      <b style={{color: "#543927"}}>Disadvantages</b><br/><small>{(metadata?.disadvantages?.[0].name)}</small>
                     </Col>
                   </Row>
                 </div>
@@ -234,7 +238,7 @@ const PilgrimDetail = (props) => {
                       <img src={imgSkills} className="img-fluid" />
                     </Col>
                     <Col xs={8}>
-                      <b style={{color: "#543927"}}>Skills</b><br/><small>{(metadata.title)}</small>
+                      <b style={{color: "#543927"}}>Skills</b><br/><small>{(metadata?.skills?.[0].name)}</small>
                     </Col>
                   </Row>
                 </div>
@@ -246,7 +250,7 @@ const PilgrimDetail = (props) => {
                       <img src={imgPets} className="img-fluid" />
                     </Col>
                     <Col xs={8}>
-                      <b style={{color: "#543927"}}>Pet</b><br/><small>{(metadata.title)}</small>
+                      <b style={{color: "#543927"}}>Pet</b><br/><small>{(metadata?.pets?.[0].name)}</small>
                     </Col>
                   </Row>
                 </div>
@@ -279,7 +283,7 @@ const PilgrimDetail = (props) => {
                   <a href={`/pilgrim/${pilgrimConn?.[1]}`}>
                     {hidechar(conndata1?.title)}
                   </a>
-                }
+                }  
               </Col>
               <Col xs={5} className={`${pilgrimConn?.[2]>0 ? 'btn-conn' : ''} m-2`}>
                 {isOwned && isEdit? 
@@ -304,10 +308,10 @@ const PilgrimDetail = (props) => {
             </Row>
             <Row>
               <Col xs={12} className="px-5">
-              {isOwned && isEdit? 
+              {isOwned && isEdit ? 
                 <Button onClick={save_story}>Save Story</Button>
                 : 
-                isOwned ? <Button onClick={e=>setIsEdit(true)}>Edit</Button> : ""
+                isOwned && isEditable ? <Button onClick={e=>setIsEdit(true)}>Edit</Button> : ""
               }
               </Col>
             </Row>
