@@ -71914,7 +71914,7 @@ const PilgrimDetail = _ref => {
     style: {
       color: "#543927"
     }
-  }, "Advantages"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata?.advantages?.[0].name))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+  }, "Advantages"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata?.advantages?.[0].name || "-"))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     xs: 6,
     className: "py-2"
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -71930,7 +71930,7 @@ const PilgrimDetail = _ref => {
     style: {
       color: "#543927"
     }
-  }, "Disadvantages"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata?.disadvantages?.[0].name))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+  }, "Disadvantages"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata?.disadvantages?.[0].name || "-"))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     xs: 6,
     className: "py-2"
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -71946,7 +71946,7 @@ const PilgrimDetail = _ref => {
     style: {
       color: "#543927"
     }
-  }, "Skills"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata?.skills?.[0].name))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+  }, "Skills"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata?.skills?.[0].name || "-"))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     xs: 6,
     className: "py-2"
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -71962,7 +71962,7 @@ const PilgrimDetail = _ref => {
     style: {
       color: "#543927"
     }
-  }, "Pet"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata?.pets?.[0].name))))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+  }, "Pet"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata?.attributes?.filter(x => x.trait_type == "Pets")?.[0].value || "-"))))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     md: 6,
     xs: 6,
     className: "py-3 px-4"
@@ -72412,7 +72412,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52778" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50338" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

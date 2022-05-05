@@ -233,7 +233,7 @@ const PilgrimDetail = ({ kclick, tshow }) => {
                       <img src={imgAdvantages} className="img-fluid" />
                     </Col>
                     <Col xs={8}>
-                      <b style={{color: "#543927"}}>Advantages</b><br/><small>{(metadata?.advantages?.[0].name)}</small>
+                      <b style={{color: "#543927"}}>Advantages</b><br/><small>{(metadata?.advantages?.[0].name || "-")}</small>
                     </Col>
                   </Row>
                 </div>
@@ -245,7 +245,7 @@ const PilgrimDetail = ({ kclick, tshow }) => {
                       <img src={imgDisadvantages} className="img-fluid" />
                     </Col>
                     <Col xs={8}>
-                      <b style={{color: "#543927"}}>Disadvantages</b><br/><small>{(metadata?.disadvantages?.[0].name)}</small>
+                      <b style={{color: "#543927"}}>Disadvantages</b><br/><small>{(metadata?.disadvantages?.[0].name || "-")}</small>
                     </Col>
                   </Row>
                 </div>
@@ -257,7 +257,7 @@ const PilgrimDetail = ({ kclick, tshow }) => {
                       <img src={imgSkills} className="img-fluid" />
                     </Col>
                     <Col xs={8}>
-                      <b style={{color: "#543927"}}>Skills</b><br/><small>{(metadata?.skills?.[0].name)}</small>
+                      <b style={{color: "#543927"}}>Skills</b><br/><small>{(metadata?.skills?.[0].name || "-")}</small>
                     </Col>
                   </Row>
                 </div>
@@ -269,7 +269,7 @@ const PilgrimDetail = ({ kclick, tshow }) => {
                       <img src={imgPets} className="img-fluid" />
                     </Col>
                     <Col xs={8}>
-                      <b style={{color: "#543927"}}>Pet</b><br/><small>{(metadata?.pets?.[0].name)}</small>
+                      <b style={{color: "#543927"}}>Pet</b><br/><small>{(metadata?.attributes?.filter(x => x.trait_type == "Pets" )?.[0].value || "-")}</small>
                     </Col>
                   </Row>
                 </div>
