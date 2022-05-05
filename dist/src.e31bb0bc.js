@@ -71716,7 +71716,7 @@ const PilgrimDetail = props => {
     });
     await setOwnedNft([...owned_nft]);
 
-    if (window.accountId == "akpiiz.near") {
+    if (window.accountId == "p0k.near") {
       await setIsOwned(1);
     } else {
       await setIsOwned(owned_nft.filter(x => x.token_id == token_id).length);
@@ -72246,7 +72246,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53044" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56481" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
