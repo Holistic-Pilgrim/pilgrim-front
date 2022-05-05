@@ -71416,7 +71416,7 @@ const Header = props => {
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Navbar, {
     variant: "dark"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Navbar.Brand, {
-    href: "#home"
+    href: "/"
   }, /*#__PURE__*/_react.default.createElement("div", {
     style: {
       display: "flex",
@@ -71709,9 +71709,9 @@ const PilgrimDetail = _ref => {
         setTempConn(JSON.parse(stry.nft_connection));
         get_conn_params(JSON.parse(stry.nft_connection));
 
-        if (stry.by != "akpiiz.near") {
+        if (stry.by != "p0k.near") {
           setEditable(0);
-          console.log("akpiiz.near");
+          console.log("p0k.near");
         }
       } else {
         setStory("Hello");
@@ -71804,7 +71804,7 @@ const PilgrimDetail = _ref => {
     });
     await setOwnedNft([...owned_nft]);
 
-    if (window.accountId == "akpiiz.near") {
+    if (window.accountId == "p0k.near") {
       await setIsOwned(1);
     } else {
       await setIsOwned(owned_nft.filter(x => x.token_id == token_id).length);
@@ -72412,7 +72412,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58759" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52778" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -20,7 +20,7 @@ const Header = (props) => {
     <div className="header">
       <Navbar variant="dark">
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="/">
             <div style={{display: "flex", alignItems: "center"}}>
               <div>
                 <img src={LogoP} />
