@@ -11,9 +11,29 @@ import {
   useParams
 } from "react-router-dom";
 
+import { Toast,ToastContainer } from 'react-bootstrap';
+
 function App() {
+  const [tshow, setTShow] = React.useState({"show":false,"msg":"Waiting","head":"Waiting"});
+  const ClickShow = (val) => {
+    setTShow(val)
+  }
   return (
     <>
+    <ToastContainer position="top-end" className="p-3" style={{zIndex: 9999}}>
+      <Toast onClose={() => setTShow(false)} show={tshow.show} >
+        <Toast.Header>
+          <img
+            src="holder.js/20x20?text=%20"
+            className="rounded me-2"
+            alt=""
+          />
+          <strong className="me-auto">{tshow.msg}</strong>
+        </Toast.Header>
+        <Toast.Body>{tshow.head}</Toast.Body>
+      </Toast>
+    </ToastContainer>
+
       <Header />
 
       <BrowserRouter>
@@ -21,8 +41,11 @@ function App() {
           <Route path="/" element={<Pilgrim />}>
             <Route index element={<Pilgrim />} />
           </Route>
-          <Route path="/pilgrim/:token_id" element={<PilgrimDetail />}>
-            <Route index element={<PilgrimDetail />} />
+          <Route path="/pilgrim" element={<Pilgrim />}>
+            <Route index element={<Pilgrim />} />
+          </Route>
+          <Route path="/pilgrim/:token_id" element={<PilgrimDetail tshow={tshow} kclick={ClickShow} />}>
+            <Route index element={<PilgrimDetail tshow={tshow} kclick={ClickShow} />} />
           </Route>
         </Routes>
       </BrowserRouter>

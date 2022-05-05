@@ -34,9 +34,9 @@ const Header = (props) => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto me-auto">
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/pilgrim/1">Holistic</Nav.Link>
-              <Nav.Link href="/pilgrim/1">Lore</Nav.Link>
-              <Nav.Link href="/pilgrim/1">Pilgrim</Nav.Link>
+              <Nav.Link href="/pilgrim">Holistic</Nav.Link>
+              <Nav.Link href="/pilgrim">Lore</Nav.Link>
+              <Nav.Link href="/pilgrim">Pilgrim</Nav.Link>
             </Nav>
             <div className="d-flex">
               {connectionButton}

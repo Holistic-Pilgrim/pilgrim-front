@@ -71435,11 +71435,11 @@ const Header = props => {
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav.Link, {
     href: "/"
   }, "Home"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav.Link, {
-    href: "/pilgrim/1"
+    href: "/pilgrim"
   }, "Holistic"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav.Link, {
-    href: "/pilgrim/1"
+    href: "/pilgrim"
   }, "Lore"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav.Link, {
-    href: "/pilgrim/1"
+    href: "/pilgrim"
   }, "Pilgrim")), /*#__PURE__*/_react.default.createElement("div", {
     className: "d-flex"
   }, connectionButton)))));
@@ -71451,7 +71451,11 @@ exports.default = _default;
 module.exports = "/header-top.911c0974.png";
 },{}],"assets/header-bot.png":[function(require,module,exports) {
 module.exports = "/header-bot.8b19dc68.png";
-},{}],"components/Pilgrim.js":[function(require,module,exports) {
+},{}],"../node_modules/react-paginate/dist/react-paginate.js":[function(require,module,exports) {
+var define;
+!function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t(require("react")):"function"==typeof define&&define.amd?define(["react"],t):"object"==typeof exports?exports.ReactPaginate=t(require("react")):e.ReactPaginate=t(e.React)}(this,(function(__WEBPACK_EXTERNAL_MODULE__98__){return(()=>{var __webpack_modules__={759:(e,t,a)=>{"use strict";a.d(t,{Z:()=>c});var r,o=a(98),_=a.n(o),n=a(697),i=a.n(n);function s(){return s=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var a=arguments[t];for(var r in a)Object.prototype.hasOwnProperty.call(a,r)&&(e[r]=a[r])}return e},s.apply(this,arguments)}e=a.hmd(e),(r="undefined"!=typeof reactHotLoaderGlobal?reactHotLoaderGlobal.enterModule:void 0)&&r(e),"undefined"!=typeof reactHotLoaderGlobal&&reactHotLoaderGlobal.default.signature;var l=function(e){var t=e.breakLabel,a=e.breakClassName,r=e.breakLinkClassName,o=e.breakHandler,n=e.getEventListener,i=a||"break";return _().createElement("li",{className:i},_().createElement("a",s({className:r,role:"button",tabIndex:"0",onKeyPress:o},n(o)),t))};l.propTypes={breakLabel:i().oneOfType([i().string,i().node]),breakClassName:i().string,breakLinkClassName:i().string,breakHandler:i().func.isRequired,getEventListener:i().func.isRequired};var p=l;const c=p;var d,u;(d="undefined"!=typeof reactHotLoaderGlobal?reactHotLoaderGlobal.default:void 0)&&(d.register(l,"BreakView","/home/yoan/work/oss/react-paginate/react_components/BreakView.js"),d.register(p,"default","/home/yoan/work/oss/react-paginate/react_components/BreakView.js")),(u="undefined"!=typeof reactHotLoaderGlobal?reactHotLoaderGlobal.leaveModule:void 0)&&u(e)},770:(e,t,a)=>{"use strict";a.d(t,{Z:()=>c});var r,o=a(98),_=a.n(o),n=a(697),i=a.n(n);function s(){return s=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var a=arguments[t];for(var r in a)Object.prototype.hasOwnProperty.call(a,r)&&(e[r]=a[r])}return e},s.apply(this,arguments)}e=a.hmd(e),(r="undefined"!=typeof reactHotLoaderGlobal?reactHotLoaderGlobal.enterModule:void 0)&&r(e),"undefined"!=typeof reactHotLoaderGlobal&&reactHotLoaderGlobal.default.signature;var l=function(e){var t=e.pageClassName,a=e.pageLinkClassName,r=e.page,o=e.selected,n=e.activeClassName,i=e.activeLinkClassName,l=e.getEventListener,p=e.pageSelectedHandler,c=e.href,d=e.extraAriaContext,u=e.pageLabelBuilder,f=e.rel,g=e.ariaLabel||"Page "+r+(d?" "+d:""),P=null;return o&&(P="page",g=e.ariaLabel||"Page "+r+" is your current page",t=void 0!==t?t+" "+n:n,void 0!==a?void 0!==i&&(a=a+" "+i):a=i),_().createElement("li",{className:t},_().createElement("a",s({rel:f,role:c?void 0:"button",className:a,href:c,tabIndex:o?"-1":"0","aria-label":g,"aria-current":P,onKeyPress:p},l(p)),u(r)))};l.propTypes={pageSelectedHandler:i().func.isRequired,selected:i().bool.isRequired,pageClassName:i().string,pageLinkClassName:i().string,activeClassName:i().string,activeLinkClassName:i().string,extraAriaContext:i().string,href:i().string,ariaLabel:i().string,page:i().number.isRequired,getEventListener:i().func.isRequired,pageLabelBuilder:i().func.isRequired,rel:i().string};var p=l;const c=p;var d,u;(d="undefined"!=typeof reactHotLoaderGlobal?reactHotLoaderGlobal.default:void 0)&&(d.register(l,"PageView","/home/yoan/work/oss/react-paginate/react_components/PageView.js"),d.register(p,"default","/home/yoan/work/oss/react-paginate/react_components/PageView.js")),(u="undefined"!=typeof reactHotLoaderGlobal?reactHotLoaderGlobal.leaveModule:void 0)&&u(e)},214:(module,__webpack_exports__,__webpack_require__)=>{"use strict";__webpack_require__.d(__webpack_exports__,{Z:()=>PaginationBoxView});var react__WEBPACK_IMPORTED_MODULE_0__=__webpack_require__(98),react__WEBPACK_IMPORTED_MODULE_0___default=__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__),prop_types__WEBPACK_IMPORTED_MODULE_1__=__webpack_require__(697),prop_types__WEBPACK_IMPORTED_MODULE_1___default=__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__),_PageView__WEBPACK_IMPORTED_MODULE_2__=__webpack_require__(770),_BreakView__WEBPACK_IMPORTED_MODULE_3__=__webpack_require__(759),_utils__WEBPACK_IMPORTED_MODULE_4__=__webpack_require__(923),enterModule;function _typeof(e){return _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},_typeof(e)}function _extends(){return _extends=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var a=arguments[t];for(var r in a)Object.prototype.hasOwnProperty.call(a,r)&&(e[r]=a[r])}return e},_extends.apply(this,arguments)}function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function _defineProperties(e,t){for(var a=0;a<t.length;a++){var r=t[a];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function _createClass(e,t,a){return t&&_defineProperties(e.prototype,t),a&&_defineProperties(e,a),e}function _inherits(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&_setPrototypeOf(e,t)}function _setPrototypeOf(e,t){return _setPrototypeOf=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e},_setPrototypeOf(e,t)}function _createSuper(e){var t=_isNativeReflectConstruct();return function(){var a,r=_getPrototypeOf(e);if(t){var o=_getPrototypeOf(this).constructor;a=Reflect.construct(r,arguments,o)}else a=r.apply(this,arguments);return _possibleConstructorReturn(this,a)}}function _possibleConstructorReturn(e,t){if(t&&("object"===_typeof(t)||"function"==typeof t))return t;if(void 0!==t)throw new TypeError("Derived constructors may only return object or undefined");return _assertThisInitialized(e)}function _assertThisInitialized(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function _isNativeReflectConstruct(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}function _getPrototypeOf(e){return _getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)},_getPrototypeOf(e)}function _defineProperty(e,t,a){return t in e?Object.defineProperty(e,t,{value:a,enumerable:!0,configurable:!0,writable:!0}):e[t]=a,e}module=__webpack_require__.hmd(module),enterModule="undefined"!=typeof reactHotLoaderGlobal?reactHotLoaderGlobal.enterModule:void 0,enterModule&&enterModule(module);var __signature__="undefined"!=typeof reactHotLoaderGlobal?reactHotLoaderGlobal.default.signature:function(e){return e},PaginationBoxView=function(_Component){_inherits(PaginationBoxView,_Component);var _super=_createSuper(PaginationBoxView);function PaginationBoxView(e){var t,a;return _classCallCheck(this,PaginationBoxView),_defineProperty(_assertThisInitialized(t=_super.call(this,e)),"handlePreviousPage",(function(e){var a=t.state.selected;t.handleClick(e,null,a>0?a-1:void 0,{isPrevious:!0})})),_defineProperty(_assertThisInitialized(t),"handleNextPage",(function(e){var a=t.state.selected,r=t.props.pageCount;t.handleClick(e,null,a<r-1?a+1:void 0,{isNext:!0})})),_defineProperty(_assertThisInitialized(t),"handlePageSelected",(function(e,a){if(t.state.selected===e)return t.callActiveCallback(e),void t.handleClick(a,null,void 0,{isActive:!0});t.handleClick(a,null,e)})),_defineProperty(_assertThisInitialized(t),"handlePageChange",(function(e){t.state.selected!==e&&(t.setState({selected:e}),t.callCallback(e))})),_defineProperty(_assertThisInitialized(t),"getEventListener",(function(e){return _defineProperty({},t.props.eventListener,e)})),_defineProperty(_assertThisInitialized(t),"handleClick",(function(e,a,r){var o=arguments.length>3&&void 0!==arguments[3]?arguments[3]:{},_=o.isPrevious,n=void 0!==_&&_,i=o.isNext,s=void 0!==i&&i,l=o.isBreak,p=void 0!==l&&l,c=o.isActive,d=void 0!==c&&c;e.preventDefault?e.preventDefault():e.returnValue=!1;var u=t.state.selected,f=t.props.onClick,g=r;if(f){var P=f({index:a,selected:u,nextSelectedPage:r,event:e,isPrevious:n,isNext:s,isBreak:p,isActive:d});if(!1===P)return;Number.isInteger(P)&&(g=P)}void 0!==g&&t.handlePageChange(g)})),_defineProperty(_assertThisInitialized(t),"handleBreakClick",(function(e,a){var r=t.state.selected;t.handleClick(a,e,r<e?t.getForwardJump():t.getBackwardJump(),{isBreak:!0})})),_defineProperty(_assertThisInitialized(t),"callCallback",(function(e){void 0!==t.props.onPageChange&&"function"==typeof t.props.onPageChange&&t.props.onPageChange({selected:e})})),_defineProperty(_assertThisInitialized(t),"callActiveCallback",(function(e){void 0!==t.props.onPageActive&&"function"==typeof t.props.onPageActive&&t.props.onPageActive({selected:e})})),_defineProperty(_assertThisInitialized(t),"getElementPageRel",(function(e){var a=t.state.selected,r=t.props,o=r.nextPageRel,_=r.prevPageRel,n=r.selectedPageRel;return a-1===e?_:a===e?n:a+1===e?o:void 0})),_defineProperty(_assertThisInitialized(t),"pagination",(function(){var e=[],a=t.props,r=a.pageRangeDisplayed,o=a.pageCount,_=a.marginPagesDisplayed,n=a.breakLabel,i=a.breakClassName,s=a.breakLinkClassName,l=t.state.selected;if(o<=r)for(var p=0;p<o;p++)e.push(t.getPageElement(p));else{var c=r/2,d=r-c;l>o-r/2?c=r-(d=o-l):l<r/2&&(d=r-(c=l));var u,f,g=function(e){return t.getPageElement(e)},P=[];for(u=0;u<o;u++){var E=u+1;E<=_||E>o-_||u>=l-c&&u<=l+(0===l&&r>1?d-1:d)?P.push({type:"page",index:u,display:g(u)}):n&&P.length>0&&P[P.length-1].display!==f&&(r>0||_>0)&&(f=react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_BreakView__WEBPACK_IMPORTED_MODULE_3__.Z,{key:u,breakLabel:n,breakClassName:i,breakLinkClassName:s,breakHandler:t.handleBreakClick.bind(null,u),getEventListener:t.getEventListener}),P.push({type:"break",index:u,display:f}))}P.forEach((function(t,a){var r=t;"break"===t.type&&P[a-1]&&"page"===P[a-1].type&&P[a+1]&&"page"===P[a+1].type&&P[a+1].index-P[a-1].index<=2&&(r={type:"page",index:t.index,display:g(t.index)}),e.push(r.display)}))}return e})),void 0!==e.initialPage&&void 0!==e.forcePage&&console.warn("(react-paginate): Both initialPage (".concat(e.initialPage,") and forcePage (").concat(e.forcePage,") props are provided, which is discouraged.")+" Use exclusively forcePage prop for a controlled component.\nSee https://reactjs.org/docs/forms.html#controlled-components"),a=e.initialPage?e.initialPage:e.forcePage?e.forcePage:0,t.state={selected:a},t}return _createClass(PaginationBoxView,[{key:"componentDidMount",value:function(){var e=this.props,t=e.initialPage,a=e.disableInitialCallback,r=e.extraAriaContext,o=e.pageCount,_=e.forcePage;void 0===t||a||this.callCallback(t),r&&console.warn("DEPRECATED (react-paginate): The extraAriaContext prop is deprecated. You should now use the ariaLabelBuilder instead."),Number.isInteger(o)||console.warn("(react-paginate): The pageCount prop value provided is not an integer (".concat(o,"). Did you forget a Math.ceil()?")),void 0!==t&&t>o-1&&console.warn("(react-paginate): The initialPage prop provided is greater than the maximum page index from pageCount prop (".concat(t," > ").concat(o-1,").")),void 0!==_&&_>o-1&&console.warn("(react-paginate): The forcePage prop provided is greater than the maximum page index from pageCount prop (".concat(_," > ").concat(o-1,")."))}},{key:"componentDidUpdate",value:function(e){void 0!==this.props.forcePage&&this.props.forcePage!==e.forcePage&&(this.props.forcePage>this.props.pageCount-1&&console.warn("(react-paginate): The forcePage prop provided is greater than the maximum page index from pageCount prop (".concat(this.props.forcePage," > ").concat(this.props.pageCount-1,").")),this.setState({selected:this.props.forcePage})),Number.isInteger(e.pageCount)&&!Number.isInteger(this.props.pageCount)&&console.warn("(react-paginate): The pageCount prop value provided is not an integer (".concat(this.props.pageCount,"). Did you forget a Math.ceil()?"))}},{key:"getForwardJump",value:function(){var e=this.state.selected,t=this.props,a=t.pageCount,r=e+t.pageRangeDisplayed;return r>=a?a-1:r}},{key:"getBackwardJump",value:function(){var e=this.state.selected-this.props.pageRangeDisplayed;return e<0?0:e}},{key:"getElementHref",value:function(e){var t=this.props,a=t.hrefBuilder,r=t.pageCount,o=t.hrefAllControls;if(a)return o||e>=0&&e<r?a(e+1,r,this.state.selected):void 0}},{key:"ariaLabelBuilder",value:function(e){var t=e===this.state.selected;if(this.props.ariaLabelBuilder&&e>=0&&e<this.props.pageCount){var a=this.props.ariaLabelBuilder(e+1,t);return this.props.extraAriaContext&&!t&&(a=a+" "+this.props.extraAriaContext),a}}},{key:"getPageElement",value:function(e){var t=this.state.selected,a=this.props,r=a.pageClassName,o=a.pageLinkClassName,_=a.activeClassName,n=a.activeLinkClassName,i=a.extraAriaContext,s=a.pageLabelBuilder;return react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_PageView__WEBPACK_IMPORTED_MODULE_2__.Z,{key:e,pageSelectedHandler:this.handlePageSelected.bind(null,e),selected:t===e,rel:this.getElementPageRel(e),pageClassName:r,pageLinkClassName:o,activeClassName:_,activeLinkClassName:n,extraAriaContext:i,href:this.getElementHref(e),ariaLabel:this.ariaLabelBuilder(e),page:e+1,pageLabelBuilder:s,getEventListener:this.getEventListener})}},{key:"render",value:function(){var e=this.props.renderOnZeroPageCount;if(0===this.props.pageCount&&void 0!==e)return e?e(this.props):e;var t=this.props,a=t.disabledClassName,r=t.disabledLinkClassName,o=t.pageCount,_=t.className,n=t.containerClassName,i=t.previousLabel,s=t.previousClassName,l=t.previousLinkClassName,p=t.previousAriaLabel,c=t.prevRel,d=t.nextLabel,u=t.nextClassName,f=t.nextLinkClassName,g=t.nextAriaLabel,P=t.nextRel,E=this.state.selected,b=0===E,y=E===o-1,v="".concat((0,_utils__WEBPACK_IMPORTED_MODULE_4__.m)(s)).concat(b?" ".concat((0,_utils__WEBPACK_IMPORTED_MODULE_4__.m)(a)):""),C="".concat((0,_utils__WEBPACK_IMPORTED_MODULE_4__.m)(u)).concat(y?" ".concat((0,_utils__WEBPACK_IMPORTED_MODULE_4__.m)(a)):""),O="".concat((0,_utils__WEBPACK_IMPORTED_MODULE_4__.m)(l)).concat(b?" ".concat((0,_utils__WEBPACK_IMPORTED_MODULE_4__.m)(r)):""),m="".concat((0,_utils__WEBPACK_IMPORTED_MODULE_4__.m)(f)).concat(y?" ".concat((0,_utils__WEBPACK_IMPORTED_MODULE_4__.m)(r)):""),L=b?"true":"false",h=y?"true":"false";return react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul",{className:_||n},react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li",{className:v},react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a",_extends({className:O,href:this.getElementHref(E-1),tabIndex:b?"-1":"0",role:"button",onKeyPress:this.handlePreviousPage,"aria-disabled":L,"aria-label":p,rel:c},this.getEventListener(this.handlePreviousPage)),i)),this.pagination(),react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li",{className:C},react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a",_extends({className:m,href:this.getElementHref(E+1),tabIndex:y?"-1":"0",role:"button",onKeyPress:this.handleNextPage,"aria-disabled":h,"aria-label":g,rel:P},this.getEventListener(this.handleNextPage)),d)))}},{key:"__reactstandin__regenerateByEval",value:function __reactstandin__regenerateByEval(key,code){this[key]=eval(code)}}]),PaginationBoxView}(react__WEBPACK_IMPORTED_MODULE_0__.Component),reactHotLoader,leaveModule;_defineProperty(PaginationBoxView,"propTypes",{pageCount:prop_types__WEBPACK_IMPORTED_MODULE_1___default().number.isRequired,pageRangeDisplayed:prop_types__WEBPACK_IMPORTED_MODULE_1___default().number,marginPagesDisplayed:prop_types__WEBPACK_IMPORTED_MODULE_1___default().number,previousLabel:prop_types__WEBPACK_IMPORTED_MODULE_1___default().node,previousAriaLabel:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,prevPageRel:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,prevRel:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,nextLabel:prop_types__WEBPACK_IMPORTED_MODULE_1___default().node,nextAriaLabel:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,nextPageRel:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,nextRel:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,breakLabel:prop_types__WEBPACK_IMPORTED_MODULE_1___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,prop_types__WEBPACK_IMPORTED_MODULE_1___default().node]),hrefBuilder:prop_types__WEBPACK_IMPORTED_MODULE_1___default().func,hrefAllControls:prop_types__WEBPACK_IMPORTED_MODULE_1___default().bool,onPageChange:prop_types__WEBPACK_IMPORTED_MODULE_1___default().func,onPageActive:prop_types__WEBPACK_IMPORTED_MODULE_1___default().func,onClick:prop_types__WEBPACK_IMPORTED_MODULE_1___default().func,initialPage:prop_types__WEBPACK_IMPORTED_MODULE_1___default().number,forcePage:prop_types__WEBPACK_IMPORTED_MODULE_1___default().number,disableInitialCallback:prop_types__WEBPACK_IMPORTED_MODULE_1___default().bool,containerClassName:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,className:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,pageClassName:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,pageLinkClassName:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,pageLabelBuilder:prop_types__WEBPACK_IMPORTED_MODULE_1___default().func,activeClassName:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,activeLinkClassName:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,previousClassName:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,nextClassName:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,previousLinkClassName:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,nextLinkClassName:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,disabledClassName:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,disabledLinkClassName:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,breakClassName:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,breakLinkClassName:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,extraAriaContext:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,ariaLabelBuilder:prop_types__WEBPACK_IMPORTED_MODULE_1___default().func,eventListener:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string,renderOnZeroPageCount:prop_types__WEBPACK_IMPORTED_MODULE_1___default().func,selectedPageRel:prop_types__WEBPACK_IMPORTED_MODULE_1___default().string}),_defineProperty(PaginationBoxView,"defaultProps",{pageRangeDisplayed:2,marginPagesDisplayed:3,activeClassName:"selected",previousLabel:"Previous",previousClassName:"previous",previousAriaLabel:"Previous page",prevPageRel:"prev",prevRel:"prev",nextLabel:"Next",nextClassName:"next",nextAriaLabel:"Next page",nextPageRel:"next",nextRel:"next",breakLabel:"...",disabledClassName:"disabled",disableInitialCallback:!1,pageLabelBuilder:function(e){return e},eventListener:"onClick",renderOnZeroPageCount:void 0,selectedPageRel:"canonical",hrefAllControls:!1}),reactHotLoader="undefined"!=typeof reactHotLoaderGlobal?reactHotLoaderGlobal.default:void 0,reactHotLoader&&reactHotLoader.register(PaginationBoxView,"PaginationBoxView","/home/yoan/work/oss/react-paginate/react_components/PaginationBoxView.js"),leaveModule="undefined"!=typeof reactHotLoaderGlobal?reactHotLoaderGlobal.leaveModule:void 0,leaveModule&&leaveModule(module)},351:(e,t,a)=>{"use strict";a.r(t),a.d(t,{default:()=>n});var r,o=a(214);e=a.hmd(e),(r="undefined"!=typeof reactHotLoaderGlobal?reactHotLoaderGlobal.enterModule:void 0)&&r(e),"undefined"!=typeof reactHotLoaderGlobal&&reactHotLoaderGlobal.default.signature;var _=o.Z;const n=_;var i,s;(i="undefined"!=typeof reactHotLoaderGlobal?reactHotLoaderGlobal.default:void 0)&&i.register(_,"default","/home/yoan/work/oss/react-paginate/react_components/index.js"),(s="undefined"!=typeof reactHotLoaderGlobal?reactHotLoaderGlobal.leaveModule:void 0)&&s(e)},923:(e,t,a)=>{"use strict";var r,o,_;function n(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"";return null!=e?e:t}a.d(t,{m:()=>n}),e=a.hmd(e),(r="undefined"!=typeof reactHotLoaderGlobal?reactHotLoaderGlobal.enterModule:void 0)&&r(e),"undefined"!=typeof reactHotLoaderGlobal&&reactHotLoaderGlobal.default.signature,(o="undefined"!=typeof reactHotLoaderGlobal?reactHotLoaderGlobal.default:void 0)&&o.register(n,"classNameIfDefined","/home/yoan/work/oss/react-paginate/react_components/utils.js"),(_="undefined"!=typeof reactHotLoaderGlobal?reactHotLoaderGlobal.leaveModule:void 0)&&_(e)},703:(e,t,a)=>{"use strict";var r=a(414);function o(){}function _(){}_.resetWarningCache=o,e.exports=function(){function e(e,t,a,o,_,n){if(n!==r){var i=new Error("Calling PropTypes validators directly is not supported by the `prop-types` package. Use PropTypes.checkPropTypes() to call them. Read more at http://fb.me/use-check-prop-types");throw i.name="Invariant Violation",i}}function t(){return e}e.isRequired=e;var a={array:e,bool:e,func:e,number:e,object:e,string:e,symbol:e,any:e,arrayOf:t,element:e,elementType:e,instanceOf:t,node:e,objectOf:t,oneOf:t,oneOfType:t,shape:t,exact:t,checkPropTypes:_,resetWarningCache:o};return a.PropTypes=a,a}},697:(e,t,a)=>{e.exports=a(703)()},414:e=>{"use strict";e.exports="SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED"},98:e=>{"use strict";e.exports=__WEBPACK_EXTERNAL_MODULE__98__}},__webpack_module_cache__={};function __webpack_require__(e){var t=__webpack_module_cache__[e];if(void 0!==t)return t.exports;var a=__webpack_module_cache__[e]={id:e,loaded:!1,exports:{}};return __webpack_modules__[e](a,a.exports,__webpack_require__),a.loaded=!0,a.exports}__webpack_require__.n=e=>{var t=e&&e.__esModule?()=>e.default:()=>e;return __webpack_require__.d(t,{a:t}),t},__webpack_require__.d=(e,t)=>{for(var a in t)__webpack_require__.o(t,a)&&!__webpack_require__.o(e,a)&&Object.defineProperty(e,a,{enumerable:!0,get:t[a]})},__webpack_require__.hmd=e=>((e=Object.create(e)).children||(e.children=[]),Object.defineProperty(e,"exports",{enumerable:!0,set:()=>{throw new Error("ES Modules may not assign module.exports or exports.*, Use ESM export syntax, instead: "+e.id)}}),e),__webpack_require__.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),__webpack_require__.r=e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})};var __webpack_exports__=__webpack_require__(351);return __webpack_exports__})()}));
+
+},{"react":"../node_modules/react/index.js"}],"components/Pilgrim.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -71471,6 +71475,8 @@ var _headerTop = _interopRequireDefault(require("../assets/header-top.png"));
 
 var _headerBot = _interopRequireDefault(require("../assets/header-bot.png"));
 
+var _reactPaginate = _interopRequireDefault(require("react-paginate"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Pilgrim() {
@@ -71480,13 +71486,23 @@ function Pilgrim() {
 
   const [allSupply, setAllSupply] = _react.default.useState(0);
 
+  const [currentItems, setCurrentItems] = _react.default.useState(null);
+
+  const [pageCount, setPageCount] = _react.default.useState(0); // Here we use item offsets; we could also use page offsets
+  // following the API or data you're working with.
+
+
+  const [itemOffset, setItemOffset] = _react.default.useState(0);
+
+  const itemsPerPage = 18;
+
   _react.default.useEffect(() => {
     // get_all_nft();
     // Error Gas Limit
     get_total_supply();
     if (!window.accountId) return;
     get_owned_nft();
-  }, [window.accountId]);
+  }, [window.accountId, itemOffset, itemsPerPage]);
 
   const get_owned_nft = async () => {
     const owned_nft = await window.contract_nft.nft_tokens_for_owner({
@@ -71503,7 +71519,18 @@ function Pilgrim() {
   const get_total_supply = async () => {
     const all_supply = await window.contract_nft.nft_total_supply();
     setAllSupply(all_supply);
-    console.log(all_supply); // Error Gas Limit
+    const endOffset = itemOffset + itemsPerPage;
+    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+    setCurrentItems([...Array(Number(all_supply)).keys()].slice(itemOffset, endOffset)); // console.log([...Array(Number(all_supply)).keys()])
+
+    setPageCount(Math.ceil(Number(all_supply) / itemsPerPage)); // console.log(all_supply)
+    // Error Gas Limit
+  };
+
+  const handlePageClick = event => {
+    const newOffset = event.selected * itemsPerPage % allSupply;
+    console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`);
+    setItemOffset(newOffset);
   };
 
   return /*#__PURE__*/_react.default.createElement("div", {
@@ -71518,27 +71545,47 @@ function Pilgrim() {
     className: "img-fluid"
   }), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, {
     className: "pt-5"
-  }, [...Array(Number(allSupply))].slice(0, 18).map((e, i) => {
-    return /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+  }, currentItems && currentItems.map((e, i) => {
+    // console.log(e)
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
       md: 2,
       xs: 6,
       className: "py-3"
     }, /*#__PURE__*/_react.default.createElement("a", {
-      href: `/pilgrim/${i}`
+      href: `/pilgrim/${e}`
     }, /*#__PURE__*/_react.default.createElement("img", {
-      src: `https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${i}.png`,
+      src: `https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${e}.png`,
       width: "100%",
       style: {
         cursor: "pointer"
       },
       className: "img-fluid"
-    })));
-  }))));
+    }))));
+  })), /*#__PURE__*/_react.default.createElement(_reactPaginate.default, {
+    nextLabel: "next >",
+    onPageChange: handlePageClick,
+    pageRangeDisplayed: 3,
+    marginPagesDisplayed: 2,
+    pageCount: pageCount,
+    previousLabel: "< previous",
+    pageClassName: "page-item",
+    pageLinkClassName: "page-link",
+    previousClassName: "page-item",
+    previousLinkClassName: "page-link",
+    nextClassName: "page-item",
+    nextLinkClassName: "page-link",
+    breakLabel: "...",
+    breakClassName: "page-item",
+    breakLinkClassName: "page-link",
+    containerClassName: "pagination",
+    activeClassName: "active",
+    renderOnZeroPageCount: null
+  })));
 }
 
 var _default = Pilgrim;
 exports.default = _default;
-},{"near-api-js":"../node_modules/near-api-js/lib/browser-index.js","react":"../node_modules/react/index.js","react-dom/client":"../node_modules/react-dom/client.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","../assets/header-top.png":"assets/header-top.png","../assets/header-bot.png":"assets/header-bot.png"}],"assets/frame.png":[function(require,module,exports) {
+},{"near-api-js":"../node_modules/near-api-js/lib/browser-index.js","react":"../node_modules/react/index.js","react-dom/client":"../node_modules/react-dom/client.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","../assets/header-top.png":"assets/header-top.png","../assets/header-bot.png":"assets/header-bot.png","react-paginate":"../node_modules/react-paginate/dist/react-paginate.js"}],"assets/frame.png":[function(require,module,exports) {
 module.exports = "/frame.557fd4c2.png";
 },{}],"assets/advantages.png":[function(require,module,exports) {
 module.exports = "/advantages.be75f2c1.png";
@@ -71550,6 +71597,12 @@ module.exports = "/skills.2e39984b.png";
 module.exports = "/pets.17b6dbb9.png";
 },{}],"assets/btn-conn.png":[function(require,module,exports) {
 module.exports = "/btn-conn.56da059f.png";
+},{}],"assets/left.png":[function(require,module,exports) {
+module.exports = "/left.45ce70de.png";
+},{}],"assets/btn-paras.png":[function(require,module,exports) {
+module.exports = "/btn-paras.0651f74f.png";
+},{}],"assets/right.png":[function(require,module,exports) {
+module.exports = "/right.d62791e9.png";
 },{}],"components/Pilgrim_detail.js":[function(require,module,exports) {
 "use strict";
 
@@ -71582,11 +71635,21 @@ var _pets = _interopRequireDefault(require("../assets/pets.png"));
 
 var _btnConn = _interopRequireDefault(require("../assets/btn-conn.png"));
 
+var _left = _interopRequireDefault(require("../assets/left.png"));
+
+var _btnParas = _interopRequireDefault(require("../assets/btn-paras.png"));
+
+var _right = _interopRequireDefault(require("../assets/right.png"));
+
 var _reactRouterDom = require("react-router-dom");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const PilgrimDetail = props => {
+const PilgrimDetail = _ref => {
+  let {
+    kclick,
+    tshow
+  } = _ref;
   let {
     token_id
   } = (0, _reactRouterDom.useParams)();
@@ -71625,11 +71688,14 @@ const PilgrimDetail = props => {
 
   _react.default.useEffect(() => {
     // get_all_nft();
+    if (token_id > 1776 || token_id < 0) return;
     get_story();
     get_params(token_id);
     if (!window.accountId) return;
     get_owned_nft();
   }, [window.accountId]);
+
+  const delay = ms => new Promise(res => setTimeout(res, ms));
 
   const get_story = async () => {
     await window.contract.get_story({
@@ -71643,8 +71709,9 @@ const PilgrimDetail = props => {
         setTempConn(JSON.parse(stry.nft_connection));
         get_conn_params(JSON.parse(stry.nft_connection));
 
-        if (stry.by != "akpiiz.testnet") {
+        if (stry.by != "akpiiz.near") {
           setEditable(0);
+          console.log("akpiiz.near");
         }
       } else {
         setStory("Hello");
@@ -71658,14 +71725,35 @@ const PilgrimDetail = props => {
   };
 
   const save_story = async () => {
+    kclick({
+      "show": true,
+      "msg": "Saving the Story",
+      "head": "Saving"
+    });
     await window.contract.set_story({
       story: tempstory,
       nft_id: token_id,
       nft_connection: JSON.stringify(tempConn)
     });
-    await get_story();
-    await alert("success");
-    await setIsEdit(false);
+    get_story();
+    kclick({
+      "show": false,
+      "msg": "Saving the Story",
+      "head": "Saving"
+    });
+    kclick({
+      "show": true,
+      "msg": "Success",
+      "head": "Success"
+    });
+    await delay(3000);
+    kclick({
+      "show": false,
+      "msg": "Success",
+      "head": "Success"
+    }); // await alert("success")
+
+    setIsEdit(false);
   };
 
   const get_params = async tokenId => {
@@ -71716,7 +71804,7 @@ const PilgrimDetail = props => {
     });
     await setOwnedNft([...owned_nft]);
 
-    if (window.accountId == "p0k.near") {
+    if (window.accountId == "akpiiz.near") {
       await setIsOwned(1);
     } else {
       await setIsOwned(owned_nft.filter(x => x.token_id == token_id).length);
@@ -71733,15 +71821,22 @@ const PilgrimDetail = props => {
   if (isOwned && isEdit) {
     lorebox = /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Control, {
       as: "textarea",
-      rows: 12,
+      rows: 17,
       onChange: x => setTempStory(x.target.value),
-      defaultValue: tempstory
+      defaultValue: tempstory,
+      disabled: tshow.show
     }), /*#__PURE__*/_react.default.createElement("br", null));
   } else {
+    let h = "495px";
+
+    if (isEditable) {
+      h = "455px";
+    }
+
     lorebox = /*#__PURE__*/_react.default.createElement("p", {
       style: {
         overflowY: "auto",
-        height: "300px",
+        height: h,
         color: "#543927",
         whiteSpace: "pre-wrap"
       }
@@ -71763,9 +71858,9 @@ const PilgrimDetail = props => {
 
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "pilgrim py-5"
-  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, {
-    className: "pilgrim_detail"
-  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, {
+    className: "pilgrim_detail p-5"
+  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     md: 6,
     xs: 6,
     className: "py-3 px-4"
@@ -71882,7 +71977,8 @@ const PilgrimDetail = props => {
     type: "number",
     placeholder: "Enter ID",
     defaultValue: pilgrimConn?.[0],
-    onChange: e => updateConn(e.target.value, 0)
+    onChange: e => updateConn(e.target.value, 0),
+    disabled: tshow.show
   }) : /*#__PURE__*/_react.default.createElement("a", {
     href: `/pilgrim/${pilgrimConn?.[0]}`
   }, hidechar(conndata0?.title))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
@@ -71892,7 +71988,8 @@ const PilgrimDetail = props => {
     type: "number",
     placeholder: "Enter ID",
     defaultValue: pilgrimConn?.[1],
-    onChange: e => updateConn(e.target.value, 1)
+    onChange: e => updateConn(e.target.value, 1),
+    disabled: tshow.show
   }) : /*#__PURE__*/_react.default.createElement("a", {
     href: `/pilgrim/${pilgrimConn?.[1]}`
   }, hidechar(conndata1?.title))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
@@ -71902,7 +71999,8 @@ const PilgrimDetail = props => {
     type: "number",
     placeholder: "Enter ID",
     defaultValue: pilgrimConn?.[2],
-    onChange: e => updateConn(e.target.value, 2)
+    onChange: e => updateConn(e.target.value, 2),
+    disabled: tshow.show
   }) : /*#__PURE__*/_react.default.createElement("a", {
     href: `/pilgrim/${pilgrimConn?.[2]}`
   }, hidechar(conndata2?.title))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
@@ -71912,7 +72010,8 @@ const PilgrimDetail = props => {
     type: "number",
     placeholder: "Enter ID",
     defaultValue: pilgrimConn?.[3],
-    onChange: e => updateConn(e.target.value, 3)
+    onChange: e => updateConn(e.target.value, 3),
+    disabled: tshow.show
   }) : /*#__PURE__*/_react.default.createElement("a", {
     href: `/pilgrim/${pilgrimConn?.[3]}`
   }, hidechar(conndata3?.title)))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
@@ -71922,12 +72021,40 @@ const PilgrimDetail = props => {
     onClick: save_story
   }, "Save Story") : isOwned && isEditable ? /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
     onClick: e => setIsEdit(true)
-  }, "Edit") : ""))))));
+  }, "Edit") : "")))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+    xs: 12,
+    md: 2,
+    className: "py-2 pb-5"
+  }, token_id > 0 ? /*#__PURE__*/_react.default.createElement("a", {
+    href: token_id - 1
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _left.default,
+    height: "40px"
+  })) : ""), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+    xs: 12,
+    md: 8,
+    className: "py-2 text-left"
+  }, /*#__PURE__*/_react.default.createElement("a", {
+    href: `https://paras.id/token/623c2cd4294f600e58f46fa2.astrogenfunds.near::${token_id}/${token_id}`,
+    target: "_blank"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _btnParas.default,
+    height: "40px"
+  }), " ")), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+    xs: 12,
+    md: 2,
+    className: "py-2 text-end"
+  }, token_id < 1776 ? /*#__PURE__*/_react.default.createElement("a", {
+    href: Number(token_id) + 1
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _right.default,
+    height: "40px"
+  })) : ""))));
 };
 
 var _default = PilgrimDetail;
 exports.default = _default;
-},{"near-api-js":"../node_modules/near-api-js/lib/browser-index.js","react":"../node_modules/react/index.js","react-dom/client":"../node_modules/react-dom/client.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","../assets/header-top.png":"assets/header-top.png","../assets/header-bot.png":"assets/header-bot.png","../assets/frame.png":"assets/frame.png","../assets/advantages.png":"assets/advantages.png","../assets/disadvantages.png":"assets/disadvantages.png","../assets/skills.png":"assets/skills.png","../assets/pets.png":"assets/pets.png","../assets/btn-conn.png":"assets/btn-conn.png","react-router-dom":"../node_modules/react-router-dom/index.js"}],"components/Footer.js":[function(require,module,exports) {
+},{"near-api-js":"../node_modules/near-api-js/lib/browser-index.js","react":"../node_modules/react/index.js","react-dom/client":"../node_modules/react-dom/client.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","../assets/header-top.png":"assets/header-top.png","../assets/header-bot.png":"assets/header-bot.png","../assets/frame.png":"assets/frame.png","../assets/advantages.png":"assets/advantages.png","../assets/disadvantages.png":"assets/disadvantages.png","../assets/skills.png":"assets/skills.png","../assets/pets.png":"assets/pets.png","../assets/btn-conn.png":"assets/btn-conn.png","../assets/left.png":"assets/left.png","../assets/btn-paras.png":"assets/btn-paras.png","../assets/right.png":"assets/right.png","react-router-dom":"../node_modules/react-router-dom/index.js"}],"components/Footer.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -71980,27 +72107,66 @@ var _Footer = _interopRequireDefault(require("./components/Footer"));
 
 var _reactRouterDom = require("react-router-dom");
 
+var _reactBootstrap = require("react-bootstrap");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function App() {
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Routes, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+  const [tshow, setTShow] = _react.default.useState({
+    "show": false,
+    "msg": "Waiting",
+    "head": "Waiting"
+  });
+
+  const ClickShow = val => {
+    setTShow(val);
+  };
+
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.ToastContainer, {
+    position: "top-end",
+    className: "p-3",
+    style: {
+      zIndex: 9999
+    }
+  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Toast, {
+    onClose: () => setTShow(false),
+    show: tshow.show
+  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Toast.Header, null, /*#__PURE__*/_react.default.createElement("img", {
+    src: "holder.js/20x20?text=%20",
+    className: "rounded me-2",
+    alt: ""
+  }), /*#__PURE__*/_react.default.createElement("strong", {
+    className: "me-auto"
+  }, tshow.msg)), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Toast.Body, null, tshow.head))), /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Routes, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/",
     element: /*#__PURE__*/_react.default.createElement(_Pilgrim.default, null)
   }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     index: true,
     element: /*#__PURE__*/_react.default.createElement(_Pilgrim.default, null)
   })), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
-    path: "/pilgrim/:token_id",
-    element: /*#__PURE__*/_react.default.createElement(_Pilgrim_detail.default, null)
+    path: "/pilgrim",
+    element: /*#__PURE__*/_react.default.createElement(_Pilgrim.default, null)
   }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     index: true,
-    element: /*#__PURE__*/_react.default.createElement(_Pilgrim_detail.default, null)
+    element: /*#__PURE__*/_react.default.createElement(_Pilgrim.default, null)
+  })), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+    path: "/pilgrim/:token_id",
+    element: /*#__PURE__*/_react.default.createElement(_Pilgrim_detail.default, {
+      tshow: tshow,
+      kclick: ClickShow
+    })
+  }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+    index: true,
+    element: /*#__PURE__*/_react.default.createElement(_Pilgrim_detail.default, {
+      tshow: tshow,
+      kclick: ClickShow
+    })
   })))), /*#__PURE__*/_react.default.createElement(_Footer.default, null));
 }
 
 var _default = App;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-dom/client":"../node_modules/react-dom/client.js","./components/Header":"components/Header.js","./components/Pilgrim":"components/Pilgrim.js","./components/Pilgrim_detail":"components/Pilgrim_detail.js","./components/Footer":"components/Footer.js","react-router-dom":"../node_modules/react-router-dom/index.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom/client":"../node_modules/react-dom/client.js","./components/Header":"components/Header.js","./components/Pilgrim":"components/Pilgrim.js","./components/Pilgrim_detail":"components/Pilgrim_detail.js","./components/Footer":"components/Footer.js","react-router-dom":"../node_modules/react-router-dom/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -72246,7 +72412,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56481" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58759" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

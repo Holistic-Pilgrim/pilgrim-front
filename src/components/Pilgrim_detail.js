@@ -1,7 +1,7 @@
 import { utils } from "near-api-js";
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Toast } from 'react-bootstrap';
 import HeaderTop from '../assets/header-top.png';
 import HeaderBot from '../assets/header-bot.png';
 import imgFrame from '../assets/frame.png';
@@ -10,15 +10,19 @@ import imgDisadvantages from '../assets/disadvantages.png';
 import imgSkills from '../assets/skills.png';
 import imgPets from '../assets/pets.png';
 import btnConn from '../assets/btn-conn.png';
+import btnLeft from '../assets/left.png';
+import btnParas from '../assets/btn-paras.png';
+import btnRight from '../assets/right.png';
 import {
   useParams
 } from "react-router-dom";
 
-const PilgrimDetail = (props) => {
+const PilgrimDetail = ({ kclick, tshow }) => {
   let { token_id } = useParams();
   if(isNaN(token_id)){
     return "ERR";
   }
+
   const [ownedNft, setOwnedNft] = React.useState([]);
   const [allNft, setAllNft] = React.useState([]);
   const [metadata, setMetadata] = React.useState([]);
@@ -33,15 +37,19 @@ const PilgrimDetail = (props) => {
   const [conndata1, setConnData1] = React.useState([])
   const [conndata2, setConnData2] = React.useState([])
   const [conndata3, setConnData3] = React.useState([])
+  
 
   React.useEffect(() => {
     // get_all_nft();
+    if(token_id > 1776 || token_id<0) return;
     get_story();
     get_params(token_id);
-    
+
     if (!window.accountId) return;
     get_owned_nft();
   }, [window.accountId]);
+
+  const delay = ms => new Promise(res => setTimeout(res, ms));
 
   const get_story = async () =>{
     await window.contract.get_story({ nft_id: token_id })
@@ -53,8 +61,9 @@ const PilgrimDetail = (props) => {
           setPilgrimConn(JSON.parse(stry.nft_connection))
           setTempConn(JSON.parse(stry.nft_connection))
           get_conn_params(JSON.parse(stry.nft_connection))
-          if(stry.by != "akpiiz.testnet"){
+          if(stry.by != process.env.OWNER_ADDRESS){
             setEditable(0)
+            console.log(process.env.OWNER_ADDRESS)
           }
         }else{
           setStory("Hello")
@@ -68,16 +77,22 @@ const PilgrimDetail = (props) => {
   }
 
   const save_story = async () => {
+    kclick({"show":true,"msg":"Saving the Story","head":"Saving"})
     await window.contract.set_story({
       story: tempstory,
       nft_id: token_id,
       nft_connection: JSON.stringify(tempConn)
     })
 
-    await get_story();
-    await alert("success")
-    await setIsEdit(false)
+    get_story();
 
+    kclick({"show":false,"msg":"Saving the Story","head":"Saving"})
+    kclick({"show":true,"msg":"Success","head":"Success"})
+    await delay(3000);
+    kclick({"show":false,"msg":"Success","head":"Success"})
+
+    // await alert("success")
+    setIsEdit(false)
   }
 
   const get_params = async (tokenId) => {
@@ -139,7 +154,7 @@ const PilgrimDetail = (props) => {
   const get_owned_nft = async () => {
     const owned_nft = await window.contract_nft.nft_tokens_for_owner({ account_id: window.accountId });
     await setOwnedNft([...owned_nft]);
-    if(window.accountId==process.env.OWNER_ADDRESS){
+    if(window.accountId == process.env.OWNER_ADDRESS){
       await setIsOwned(1)
     }else{
       await setIsOwned(owned_nft.filter(x => x.token_id == token_id ).length)
@@ -156,13 +171,17 @@ const PilgrimDetail = (props) => {
   if(isOwned && isEdit){
     lorebox = (
       <>
-        <Form.Control as="textarea" rows={12} onChange={x => setTempStory(x.target.value)} defaultValue={tempstory} />
+        <Form.Control as="textarea" rows={17} onChange={x => setTempStory(x.target.value)} defaultValue={tempstory} disabled={tshow.show} />
         <br />
       </>
       )
   }else{
+    let h = "495px";
+    if(isEditable){
+      h = "455px";
+    }
     lorebox = (
-      <p style={{overflowY: "auto", height: "300px", color: "#543927", whiteSpace: "pre-wrap"}}>
+      <p style={{overflowY: "auto", height: h, color: "#543927", whiteSpace: "pre-wrap"}}>
         {story}
       </p>
       )
@@ -184,8 +203,8 @@ const PilgrimDetail = (props) => {
 
   return (
     <div className="pilgrim py-5">
-      <Container>  
-        <Row className="pilgrim_detail">
+      <Container className="pilgrim_detail p-5">  
+        <Row>
           <Col md={6} xs={6} className="py-3 px-4">
             <Row className="justify-content-md-center">
               <Col md={12} sm={12} className="text-center py-2">
@@ -256,6 +275,9 @@ const PilgrimDetail = (props) => {
                 </div>
               </Col>
             </Row>
+
+
+
             
           </Col>
           <Col md={6} xs={6} className="py-3 px-4">
@@ -269,7 +291,7 @@ const PilgrimDetail = (props) => {
             <Row className="text-center py-2 justify-content-md-center">
               <Col xs={5} className={`${pilgrimConn?.[0]>0 ? 'btn-conn' : ''} m-2`}>
                 {isOwned && isEdit? 
-                  <Form.Control type="number" placeholder="Enter ID" defaultValue={pilgrimConn?.[0]} onChange={e => updateConn(e.target.value,0) } />
+                  <Form.Control type="number" placeholder="Enter ID" defaultValue={pilgrimConn?.[0]} onChange={e => updateConn(e.target.value,0) } disabled={tshow.show} />
                 :
                   <a href={`/pilgrim/${pilgrimConn?.[0]}`}>
                     {hidechar(conndata0?.title)}          
@@ -278,7 +300,7 @@ const PilgrimDetail = (props) => {
               </Col>
               <Col xs={5} className={`${pilgrimConn?.[1]>0 ? 'btn-conn' : ''} m-2`}>
                 {isOwned && isEdit? 
-                  <Form.Control type="number" placeholder="Enter ID" defaultValue={pilgrimConn?.[1]} onChange={e => updateConn(e.target.value,1) } />
+                  <Form.Control type="number" placeholder="Enter ID" defaultValue={pilgrimConn?.[1]} onChange={e => updateConn(e.target.value,1) } disabled={tshow.show} />
                 :
                   <a href={`/pilgrim/${pilgrimConn?.[1]}`}>
                     {hidechar(conndata1?.title)}
@@ -287,7 +309,7 @@ const PilgrimDetail = (props) => {
               </Col>
               <Col xs={5} className={`${pilgrimConn?.[2]>0 ? 'btn-conn' : ''} m-2`}>
                 {isOwned && isEdit? 
-                  <Form.Control type="number" placeholder="Enter ID" defaultValue={pilgrimConn?.[2]} onChange={e => updateConn(e.target.value,2) } />
+                  <Form.Control type="number" placeholder="Enter ID" defaultValue={pilgrimConn?.[2]} onChange={e => updateConn(e.target.value,2) } disabled={tshow.show} />
                 :
                   <a href={`/pilgrim/${pilgrimConn?.[2]}`}>
                     {hidechar(conndata2?.title)}          
@@ -298,7 +320,7 @@ const PilgrimDetail = (props) => {
               <Col xs={5} className={`${pilgrimConn?.[3]>0 ? 'btn-conn' : ''} m-2`}>
                 
                 {isOwned && isEdit? 
-                  <Form.Control type="number" placeholder="Enter ID" defaultValue={pilgrimConn?.[3]} onChange={e => updateConn(e.target.value,3) } />
+                  <Form.Control type="number" placeholder="Enter ID" defaultValue={pilgrimConn?.[3]} onChange={e => updateConn(e.target.value,3) } disabled={tshow.show} />
                 :
                   <a href={`/pilgrim/${pilgrimConn?.[3]}`}>
                     {hidechar(conndata3?.title)}          
@@ -315,7 +337,25 @@ const PilgrimDetail = (props) => {
               }
               </Col>
             </Row>
-
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12} md={2} className="py-2 pb-5">
+            {token_id > 0 ?
+              <a href={token_id-1}><img src={btnLeft} height="40px" /></a>
+            :
+            ""
+            }
+          </Col>
+          <Col xs={12} md={8} className="py-2 text-left">
+            <a href={`https://paras.id/token/623c2cd4294f600e58f46fa2.astrogenfunds.near::${token_id}/${token_id}`} target="_blank"><img src={btnParas} height="40px" /> </a>
+          </Col>
+          <Col xs={12} md={2} className="py-2 text-end">
+            {token_id < 1776 ?
+              <a href={Number(token_id)+1}><img src={btnRight} height="40px" /></a>
+            :
+            ""
+            }
           </Col>
         </Row>
       </Container>
