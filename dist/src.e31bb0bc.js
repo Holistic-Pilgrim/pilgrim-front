@@ -68882,7 +68882,7 @@ function getConfig(env) {
       return {
         networkId: 'local',
         nodeUrl: 'http://localhost:3030',
-        keyPath: `${"C:\\Users\\Akpiiz"}/.near/validator_key.json`,
+        keyPath: `${undefined}/.near/validator_key.json`,
         walletUrl: 'http://localhost:4000/wallet',
         contractName: CONTRACT_NAME
       };
@@ -71533,6 +71533,14 @@ exports.default = _default;
 module.exports = "/frame.557fd4c2.png";
 },{}],"assets/advantages.png":[function(require,module,exports) {
 module.exports = "/advantages.be75f2c1.png";
+},{}],"assets/disadvantages.png":[function(require,module,exports) {
+module.exports = "/disadvantages.d3252032.png";
+},{}],"assets/skills.png":[function(require,module,exports) {
+module.exports = "/skills.2e39984b.png";
+},{}],"assets/pets.png":[function(require,module,exports) {
+module.exports = "/pets.17b6dbb9.png";
+},{}],"assets/btn-conn.png":[function(require,module,exports) {
+module.exports = "/btn-conn.56da059f.png";
 },{}],"components/Pilgrim_detail.js":[function(require,module,exports) {
 "use strict";
 
@@ -71557,6 +71565,14 @@ var _frame = _interopRequireDefault(require("../assets/frame.png"));
 
 var _advantages = _interopRequireDefault(require("../assets/advantages.png"));
 
+var _disadvantages = _interopRequireDefault(require("../assets/disadvantages.png"));
+
+var _skills = _interopRequireDefault(require("../assets/skills.png"));
+
+var _pets = _interopRequireDefault(require("../assets/pets.png"));
+
+var _btnConn = _interopRequireDefault(require("../assets/btn-conn.png"));
+
 var _reactRouterDom = require("react-router-dom");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -71578,45 +71594,107 @@ const PilgrimDetail = props => {
 
   const [isOwned, setIsOwned] = _react.default.useState(0);
 
+  const [isEdit, setIsEdit] = _react.default.useState(false);
+
   const [story, setStory] = _react.default.useState();
 
   const [tempstory, setTempStory] = _react.default.useState();
 
+  const [pilgrimConn, setPilgrimConn] = _react.default.useState([]);
+
+  const [tempConn, setTempConn] = _react.default.useState([]);
+
+  const [conndata0, setConnData0] = _react.default.useState([]);
+
+  const [conndata1, setConnData1] = _react.default.useState([]);
+
+  const [conndata2, setConnData2] = _react.default.useState([]);
+
+  const [conndata3, setConnData3] = _react.default.useState([]);
+
   _react.default.useEffect(() => {
-    get_params();
     get_all_nft();
     get_story();
+    get_params(token_id);
     if (!window.accountId) return;
     get_owned_nft();
   }, [window.accountId]);
 
   const get_story = async () => {
-    window.contract.get_story({
+    await window.contract.get_story({
       nft_id: token_id
     }).then(stry => {
-      stry = JSON.parse(stry);
-      setStory(stry.story);
-      setTempStory(stry.story);
+      if (stry != "Hello") {
+        stry = JSON.parse(stry);
+        setStory(stry.story);
+        setTempStory(stry.story);
+        setPilgrimConn(JSON.parse(stry.nft_connection));
+        setTempConn(JSON.parse(stry.nft_connection));
+        get_conn_params(JSON.parse(stry.nft_connection));
+        console.log(stry.nft_connection);
+      } else {
+        setStory("Hello");
+        setTempStory("Hello");
+        setPilgrimConn([null, null, null, null]);
+        setTempConn([null, null, null, null]);
+        get_conn_params([null, null, null, null]);
+      }
     });
   };
 
   const save_story = async () => {
     await window.contract.set_story({
-      // pass the value that the user entered in the greeting field
       story: tempstory,
       nft_id: token_id,
-      nft_connection: "[]"
+      nft_connection: JSON.stringify(tempConn)
     });
+    await get_story();
     await alert("success");
+    await setIsEdit(false);
   };
 
-  const get_params = async () => {
-    fetch(`https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${token_id}.json`).then(response => response.json()).then(jsonData => {
-      setMetadata(jsonData);
+  const get_params = async tokenId => {
+    await fetch(`https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${tokenId}.json`).then(response => response.json()).then(async jsonData => {
+      await setMetadata(jsonData);
     }).catch(error => {
-      // handle your errors here
       console.error(error);
     });
+  };
+
+  const get_conn_params = async arr => {
+    console.log(arr);
+
+    if (arr[0] > 0) {
+      fetch(`https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${arr[0]}.json`).then(response => response.json()).then(jsonData => {
+        setConnData0(jsonData);
+      }).catch(error => {
+        console.error(error);
+      });
+    }
+
+    if (arr[1] > 0) {
+      fetch(`https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${arr[1]}.json`).then(response => response.json()).then(jsonData => {
+        setConnData1(jsonData);
+      }).catch(error => {
+        console.error(error);
+      });
+    }
+
+    if (arr[2] > 0) {
+      fetch(`https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${arr[2]}.json`).then(response => response.json()).then(jsonData => {
+        setConnData2(jsonData);
+      }).catch(error => {
+        console.error(error);
+      });
+    }
+
+    if (arr[3] > 0) {
+      fetch(`https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${arr[3]}.json`).then(response => response.json()).then(jsonData => {
+        setConnData3(jsonData);
+      }).catch(error => {
+        console.error(error);
+      });
+    }
   };
 
   const get_owned_nft = async () => {
@@ -71624,7 +71702,12 @@ const PilgrimDetail = props => {
       account_id: window.accountId
     });
     await setOwnedNft([...owned_nft]);
-    await setIsOwned(owned_nft.filter(x => x.token_id == token_id).length);
+
+    if (window.accountId == "akpiiz.testnet") {
+      await setIsOwned(1);
+    } else {
+      await setIsOwned(owned_nft.filter(x => x.token_id == token_id).length);
+    }
   };
 
   const get_all_nft = async () => {
@@ -71634,15 +71717,13 @@ const PilgrimDetail = props => {
 
   let lorebox;
 
-  if (isOwned) {
+  if (isOwned && isEdit) {
     lorebox = /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Control, {
       as: "textarea",
       rows: 12,
       onChange: x => setTempStory(x.target.value),
       defaultValue: tempstory
-    }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
-      onClick: save_story
-    }, "Save Story"));
+    }), /*#__PURE__*/_react.default.createElement("br", null));
   } else {
     lorebox = /*#__PURE__*/_react.default.createElement("p", {
       style: {
@@ -71652,6 +71733,20 @@ const PilgrimDetail = props => {
         whiteSpace: "pre-wrap"
       }
     }, story);
+  }
+
+  const updateConn = async (val, index) => {
+    let newArr = [...tempConn];
+    newArr[index] = val == '' ? null : Number(val);
+    await setTempConn(newArr);
+    await console.log(tempConn);
+  };
+
+  function hidechar(val) {
+    if (typeof val !== "undefined") {
+      const val1 = val.slice(0, 22);
+      return `${val1} ...`;
+    }
   }
 
   return /*#__PURE__*/_react.default.createElement("div", {
@@ -71720,7 +71815,7 @@ const PilgrimDetail = props => {
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     xs: 3
   }, /*#__PURE__*/_react.default.createElement("img", {
-    src: _advantages.default,
+    src: _disadvantages.default,
     className: "img-fluid"
   })), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     xs: 8
@@ -71736,7 +71831,7 @@ const PilgrimDetail = props => {
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     xs: 3
   }, /*#__PURE__*/_react.default.createElement("img", {
-    src: _advantages.default,
+    src: _skills.default,
     className: "img-fluid"
   })), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     xs: 8
@@ -71752,7 +71847,7 @@ const PilgrimDetail = props => {
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     xs: 3
   }, /*#__PURE__*/_react.default.createElement("img", {
-    src: _advantages.default,
+    src: _pets.default,
     className: "img-fluid"
   })), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     xs: 8
@@ -71766,12 +71861,61 @@ const PilgrimDetail = props => {
     className: "py-3 px-4"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     xs: 12
-  }, /*#__PURE__*/_react.default.createElement("b", null, "Story :"), " ", /*#__PURE__*/_react.default.createElement("br", null), lorebox))))));
+  }, /*#__PURE__*/_react.default.createElement("b", null, "Story :"), " ", /*#__PURE__*/_react.default.createElement("br", null), lorebox)), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, {
+    className: "text-center py-2 justify-content-md-center"
+  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+    xs: 5,
+    className: `${pilgrimConn?.[0] > 0 ? 'btn-conn' : ''} m-2`
+  }, isOwned && isEdit ? /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Control, {
+    type: "number",
+    placeholder: "Enter ID",
+    defaultValue: pilgrimConn?.[0],
+    onChange: e => updateConn(e.target.value, 0)
+  }) : /*#__PURE__*/_react.default.createElement("a", {
+    href: `/pilgrim/${pilgrimConn?.[0]}`
+  }, hidechar(conndata0?.title))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+    xs: 5,
+    className: `${pilgrimConn?.[1] > 0 ? 'btn-conn' : ''} m-2`
+  }, isOwned && isEdit ? /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Control, {
+    type: "number",
+    placeholder: "Enter ID",
+    defaultValue: pilgrimConn?.[1],
+    onChange: e => updateConn(e.target.value, 1)
+  }) : /*#__PURE__*/_react.default.createElement("a", {
+    href: `/pilgrim/${pilgrimConn?.[1]}`
+  }, hidechar(conndata1?.title))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+    xs: 5,
+    className: `${pilgrimConn?.[2] > 0 ? 'btn-conn' : ''} m-2`
+  }, isOwned && isEdit ? /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Control, {
+    type: "number",
+    placeholder: "Enter ID",
+    defaultValue: pilgrimConn?.[2],
+    onChange: e => updateConn(e.target.value, 2)
+  }) : /*#__PURE__*/_react.default.createElement("a", {
+    href: `/pilgrim/${pilgrimConn?.[2]}`
+  }, hidechar(conndata2?.title))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+    xs: 5,
+    className: `${pilgrimConn?.[3] > 0 ? 'btn-conn' : ''} m-2`
+  }, isOwned && isEdit ? /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Control, {
+    type: "number",
+    placeholder: "Enter ID",
+    defaultValue: pilgrimConn?.[3],
+    onChange: e => updateConn(e.target.value, 3)
+  }) : /*#__PURE__*/_react.default.createElement("a", {
+    href: `/pilgrim/${pilgrimConn?.[3]}`
+  }, hidechar(conndata3?.title)))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+    xs: 12,
+    className: "px-5"
+  }, isOwned && isEdit ? /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
+    onClick: save_story
+  }, "Save Story") : isOwned ? /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
+    onClick: e => setIsEdit(true)
+  }, "Edit") : ""))))));
 };
 
 var _default = PilgrimDetail;
 exports.default = _default;
-},{"near-api-js":"../node_modules/near-api-js/lib/browser-index.js","react":"../node_modules/react/index.js","react-dom/client":"../node_modules/react-dom/client.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","../assets/header-top.png":"assets/header-top.png","../assets/header-bot.png":"assets/header-bot.png","../assets/frame.png":"assets/frame.png","../assets/advantages.png":"assets/advantages.png","react-router-dom":"../node_modules/react-router-dom/index.js"}],"components/Footer.js":[function(require,module,exports) {
+},{"near-api-js":"../node_modules/near-api-js/lib/browser-index.js","react":"../node_modules/react/index.js","react-dom/client":"../node_modules/react-dom/client.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","../assets/header-top.png":"assets/header-top.png","../assets/header-bot.png":"assets/header-bot.png","../assets/frame.png":"assets/frame.png","../assets/advantages.png":"assets/advantages.png","../assets/disadvantages.png":"assets/disadvantages.png","../assets/skills.png":"assets/skills.png","../assets/pets.png":"assets/pets.png","../assets/btn-conn.png":"assets/btn-conn.png","react-router-dom":"../node_modules/react-router-dom/index.js"}],"components/Footer.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -72034,7 +72178,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./assets\\alagard.ttf":[["alagard.ed37ea1d.ttf","assets/alagard.ttf"],"assets/alagard.ttf"],"./assets\\menu.png":[["menu.df33ca4b.png","assets/menu.png"],"assets/menu.png"],"./assets\\footer.png":[["footer.4554c39f.png","assets/footer.png"],"assets/footer.png"],"./assets\\book.png":[["book.a93446c8.png","assets/book.png"],"assets/book.png"],"./assets\\frame-mini.png":[["frame-mini.300c2613.png","assets/frame-mini.png"],"assets/frame-mini.png"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
+},{"./assets\\alagard.ttf":[["alagard.ed37ea1d.ttf","assets/alagard.ttf"],"assets/alagard.ttf"],"./assets\\menu.png":[["menu.df33ca4b.png","assets/menu.png"],"assets/menu.png"],"./assets\\footer.png":[["footer.4554c39f.png","assets/footer.png"],"assets/footer.png"],"./assets\\book.png":[["book.a93446c8.png","assets/book.png"],"assets/book.png"],"./assets\\frame-mini.png":[["frame-mini.300c2613.png","assets/frame-mini.png"],"assets/frame-mini.png"],"./assets\\btn-conn.png":[["btn-conn.56da059f.png","assets/btn-conn.png"],"assets/btn-conn.png"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -72090,7 +72234,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53964" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51188" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

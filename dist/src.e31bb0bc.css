@@ -51,6 +51,18 @@ body{
   line-height: 15px;
 }
 
+.btn-conn{
+  background: url("/btn-conn.56da059f.png");
+  background-size: 100% 100% !important;
+  padding: 15px;
+}
+
+.btn-conn a{
+  text-decoration: none;
+  color: #543927;
+  font-weight: bold;
+}
+
 
 /* ===== Scrollbar CSS ===== */
   /* Firefox */

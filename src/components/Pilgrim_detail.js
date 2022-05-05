@@ -6,6 +6,10 @@ import HeaderTop from '../assets/header-top.png';
 import HeaderBot from '../assets/header-bot.png';
 import imgFrame from '../assets/frame.png';
 import imgAdvantages from '../assets/advantages.png';
+import imgDisadvantages from '../assets/disadvantages.png';
+import imgSkills from '../assets/skills.png';
+import imgPets from '../assets/pets.png';
+import btnConn from '../assets/btn-conn.png';
 import {
   useParams
 } from "react-router-dom";
@@ -19,54 +23,123 @@ const PilgrimDetail = (props) => {
   const [allNft, setAllNft] = React.useState([]);
   const [metadata, setMetadata] = React.useState([]);
   const [isOwned, setIsOwned] = React.useState(0);
+  const [isEdit, setIsEdit] = React.useState(false);
   const [story, setStory] = React.useState()
   const [tempstory, setTempStory] = React.useState()
+  const [pilgrimConn, setPilgrimConn] = React.useState([])
+  const [tempConn, setTempConn] = React.useState([])
+  const [conndata0, setConnData0] = React.useState([])
+  const [conndata1, setConnData1] = React.useState([])
+  const [conndata2, setConnData2] = React.useState([])
+  const [conndata3, setConnData3] = React.useState([])
 
   React.useEffect(() => {
-    get_params();
     get_all_nft();
     get_story();
+    get_params(token_id);
     
     if (!window.accountId) return;
     get_owned_nft();
   }, [window.accountId]);
 
   const get_story = async () =>{
-    window.contract.get_story({ nft_id: token_id })
+    await window.contract.get_story({ nft_id: token_id })
       .then(stry => {
-        stry = JSON.parse(stry)
-        setStory(stry.story)
-        setTempStory(stry.story)
+        if(stry != "Hello"){
+          stry = JSON.parse(stry)
+          setStory(stry.story)
+          setTempStory(stry.story)
+          setPilgrimConn(JSON.parse(stry.nft_connection))
+          setTempConn(JSON.parse(stry.nft_connection))
+          get_conn_params(JSON.parse(stry.nft_connection))
+          console.log(stry.nft_connection)
+        }else{
+          setStory("Hello")
+          setTempStory("Hello")
+          setPilgrimConn([null,null,null,null])
+          setTempConn([null,null,null,null])
+          get_conn_params([null,null,null,null])
+        }
       })
   }
 
   const save_story = async () => {
     await window.contract.set_story({
-      // pass the value that the user entered in the greeting field
       story: tempstory,
       nft_id: token_id,
-      nft_connection: "[]"
+      nft_connection: JSON.stringify(tempConn)
     })
 
+    await get_story();
     await alert("success")
+    await setIsEdit(false)
+
   }
 
-  const get_params = async () => {
-    fetch(`https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${token_id}.json`)
+  const get_params = async (tokenId) => {
+    await fetch(`https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${tokenId}.json`)
     .then(response => response.json())
-    .then((jsonData) => {
-      setMetadata(jsonData)
+    .then(async (jsonData) => {
+      await setMetadata(jsonData)
+
     })
     .catch((error) => {
-      // handle your errors here
       console.error(error)
     })
+  }
+
+  const get_conn_params = async(arr) =>{
+    console.log(arr)
+    if(arr[0]>0){
+      fetch(`https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${arr[0]}.json`)
+      .then(response => response.json())
+      .then((jsonData) => {
+        setConnData0(jsonData)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+    }
+    if(arr[1]>0){
+      fetch(`https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${arr[1]}.json`)
+      .then(response => response.json())
+      .then((jsonData) => {
+        setConnData1(jsonData)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+    }
+    if(arr[2]>0){
+      fetch(`https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${arr[2]}.json`)
+      .then(response => response.json())
+      .then((jsonData) => {
+        setConnData2(jsonData)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+    }
+    if(arr[3]>0){
+      fetch(`https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${arr[3]}.json`)
+      .then(response => response.json())
+      .then((jsonData) => {
+        setConnData3(jsonData)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+    }
   }
 
   const get_owned_nft = async () => {
     const owned_nft = await window.contract_nft.nft_tokens_for_owner({ account_id: window.accountId });
     await setOwnedNft([...owned_nft]);
-    await setIsOwned(owned_nft.filter(x => x.token_id == token_id ).length)
+    if(window.accountId=="akpiiz.testnet"){
+      await setIsOwned(1)
+    }else{
+      await setIsOwned(owned_nft.filter(x => x.token_id == token_id ).length)
+    }
   };
 
   const get_all_nft = async () => {
@@ -75,12 +148,11 @@ const PilgrimDetail = (props) => {
   };
 
   let lorebox;
-  if(isOwned){
+  if(isOwned && isEdit){
     lorebox = (
       <>
         <Form.Control as="textarea" rows={12} onChange={x => setTempStory(x.target.value)} defaultValue={tempstory} />
         <br />
-        <Button onClick={save_story}>Save Story</Button>
       </>
       )
   }else{
@@ -89,6 +161,21 @@ const PilgrimDetail = (props) => {
         {story}
       </p>
       )
+  }
+  const updateConn = async (val,index) => {
+    let newArr = [...tempConn];
+    newArr[index] = (val=='' ? null : Number(val)) ;
+
+    await setTempConn(newArr)
+    await console.log(tempConn)
+  }
+
+  function hidechar(val){
+    if(typeof val !== "undefined"){
+      const val1 = val.slice(0,22);
+
+      return (`${val1} ...`);
+    }
   }
 
   return (
@@ -132,7 +219,7 @@ const PilgrimDetail = (props) => {
                 <div className="with_frame2 py-3 px-4">
                   <Row>
                     <Col xs={3}>
-                      <img src={imgAdvantages} className="img-fluid" />
+                      <img src={imgDisadvantages} className="img-fluid" />
                     </Col>
                     <Col xs={8}>
                       <b style={{color: "#543927"}}>Disadvantages</b><br/><small>{(metadata.title)}</small>
@@ -144,7 +231,7 @@ const PilgrimDetail = (props) => {
                 <div className="with_frame2 py-3 px-4">
                   <Row>
                     <Col xs={3}>
-                      <img src={imgAdvantages} className="img-fluid" />
+                      <img src={imgSkills} className="img-fluid" />
                     </Col>
                     <Col xs={8}>
                       <b style={{color: "#543927"}}>Skills</b><br/><small>{(metadata.title)}</small>
@@ -156,7 +243,7 @@ const PilgrimDetail = (props) => {
                 <div className="with_frame2 py-3 px-4">
                   <Row>
                     <Col xs={3}>
-                      <img src={imgAdvantages} className="img-fluid" />
+                      <img src={imgPets} className="img-fluid" />
                     </Col>
                     <Col xs={8}>
                       <b style={{color: "#543927"}}>Pet</b><br/><small>{(metadata.title)}</small>
@@ -172,8 +259,59 @@ const PilgrimDetail = (props) => {
               <Col xs={12}>
                 <b>Story :</b> <br / >
                   {lorebox}
+
               </Col>
             </Row>
+            <Row className="text-center py-2 justify-content-md-center">
+              <Col xs={5} className={`${pilgrimConn?.[0]>0 ? 'btn-conn' : ''} m-2`}>
+                {isOwned && isEdit? 
+                  <Form.Control type="number" placeholder="Enter ID" defaultValue={pilgrimConn?.[0]} onChange={e => updateConn(e.target.value,0) } />
+                :
+                  <a href={`/pilgrim/${pilgrimConn?.[0]}`}>
+                    {hidechar(conndata0?.title)}          
+                  </a>
+                }
+              </Col>
+              <Col xs={5} className={`${pilgrimConn?.[1]>0 ? 'btn-conn' : ''} m-2`}>
+                {isOwned && isEdit? 
+                  <Form.Control type="number" placeholder="Enter ID" defaultValue={pilgrimConn?.[1]} onChange={e => updateConn(e.target.value,1) } />
+                :
+                  <a href={`/pilgrim/${pilgrimConn?.[1]}`}>
+                    {hidechar(conndata1?.title)}
+                  </a>
+                }
+              </Col>
+              <Col xs={5} className={`${pilgrimConn?.[2]>0 ? 'btn-conn' : ''} m-2`}>
+                {isOwned && isEdit? 
+                  <Form.Control type="number" placeholder="Enter ID" defaultValue={pilgrimConn?.[2]} onChange={e => updateConn(e.target.value,2) } />
+                :
+                  <a href={`/pilgrim/${pilgrimConn?.[2]}`}>
+                    {hidechar(conndata2?.title)}          
+                  </a>
+                }     
+              </Col>
+
+              <Col xs={5} className={`${pilgrimConn?.[3]>0 ? 'btn-conn' : ''} m-2`}>
+                
+                {isOwned && isEdit? 
+                  <Form.Control type="number" placeholder="Enter ID" defaultValue={pilgrimConn?.[3]} onChange={e => updateConn(e.target.value,3) } />
+                :
+                  <a href={`/pilgrim/${pilgrimConn?.[3]}`}>
+                    {hidechar(conndata3?.title)}          
+                  </a>
+                }      
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12} className="px-5">
+              {isOwned && isEdit? 
+                <Button onClick={save_story}>Save Story</Button>
+                : 
+                isOwned ? <Button onClick={e=>setIsEdit(true)}>Edit</Button> : ""
+              }
+              </Col>
+            </Row>
+
           </Col>
         </Row>
       </Container>
