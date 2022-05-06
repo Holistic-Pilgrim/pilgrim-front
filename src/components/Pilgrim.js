@@ -1,7 +1,7 @@
 import { utils } from "near-api-js";
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Form } from 'react-bootstrap';
 import HeaderTop from '../assets/header-top.png';
 import HeaderBot from '../assets/header-bot.png';
 
@@ -18,6 +18,7 @@ function Pilgrim() {
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
   const [itemOffset, setItemOffset] = React.useState(0);
+  const [sorting, setSorting] = React.useState("asc");
   const itemsPerPage = 18;
 
   React.useEffect(() => {
@@ -44,18 +45,29 @@ function Pilgrim() {
   const get_total_supply = async () => {
     const all_supply = await window.contract_nft.nft_total_supply();
     setAllSupply(all_supply);
-    const endOffset = itemOffset + itemsPerPage;
-    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    setCurrentItems(([...Array(Number(all_supply)).keys()]).slice(itemOffset, endOffset));
-    // console.log([...Array(Number(all_supply)).keys()])
-    setPageCount(Math.ceil(Number(all_supply) / itemsPerPage));
-    // console.log(all_supply)
-    // Error Gas Limit
+    filter_pagi(all_supply,sorting,null)
   };
+
+  function filter_pagi(supply,filter,search){
+    let arr = ([...Array(Number(supply)).keys()])
+    let endOffset = itemOffset + itemsPerPage;
+    if(filter=="desc"){
+      arr = ([...Array(Number(supply)).keys()]).reverse()
+    }
+
+    setPageCount(Math.ceil(Number(supply) / itemsPerPage));
+
+    if(search){
+      arr = arr.filter(x => x == search)
+      setPageCount(1)
+    }
+
+    setCurrentItems(arr.slice(itemOffset, endOffset));
+  }
 
   const handlePageClick = (event) => {
     const newOffset = event.selected * itemsPerPage % allSupply;
-    console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`);
+    // console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`);
     setItemOffset(newOffset);
   };
 
@@ -66,45 +78,57 @@ function Pilgrim() {
         <img src={HeaderTop} className="img-fluid" />
           <h1>All Pilgrims</h1>
         <img src={HeaderBot} className="img-fluid" />
-        <Row className="pt-5">
-        {currentItems && currentItems.map((e, i) => {
-          // console.log(e)
-          return(
-            <>
-              <Col md={2} xs={6} className="py-3">
-                <a href={`/pilgrim/${e}`}>
-                  <img
-                    src={`https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${e}.png`}
-                    width="100%"
-                    style={{ cursor: "pointer" }}
-                    className="img-fluid"
-                    
-                  />
-                </a>
-              </Col>
-            </>)
-        })}
+        <Row className="pt-5 justify-content-end">
+          <Col md={4} xs={12} className="py-2">
+            <Form.Control type="number" placeholder="Search ID" onChange={e => filter_pagi(allSupply,sorting,e.target.value)} />
+          </Col>
+
+          <Col md={2} xs={12} className="py-2">
+            <Form.Select aria-label="Sort" onChange={e => filter_pagi(allSupply,e.target.value,null)}>
+              <option value="asc">ID (asc)</option>
+              <option value="desc">ID (desc)</option>
+            </Form.Select>
+          </Col>
         </Row>
-              <ReactPaginate
-                nextLabel="next >"
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={3}
-                marginPagesDisplayed={2}
-                pageCount={pageCount}
-                previousLabel="< previous"
-                pageClassName="page-item"
-                pageLinkClassName="page-link"
-                previousClassName="page-item"
-                previousLinkClassName="page-link"
-                nextClassName="page-item"
-                nextLinkClassName="page-link"
-                breakLabel="..."
-                breakClassName="page-item"
-                breakLinkClassName="page-link"
-                containerClassName="pagination"
-                activeClassName="active"
-                renderOnZeroPageCount={null}
-              />
+        <Row >
+          {currentItems && currentItems.map((e, i) => {
+            // console.log(e)
+            return(
+              <>
+                <Col md={2} xs={6} className="py-2">
+                  <a href={`/pilgrim/${e}`}>
+                    <img
+                      src={`https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${e}.png`}
+                      width="100%"
+                      style={{ cursor: "pointer" }}
+                      className="img-fluid"
+                      
+                    />
+                  </a>
+                </Col>
+              </>)
+          })}
+        </Row>
+          <ReactPaginate
+            nextLabel="next >"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={3}
+            marginPagesDisplayed={2}
+            pageCount={pageCount}
+            previousLabel="< previous"
+            pageClassName="page-item"
+            pageLinkClassName="page-link"
+            previousClassName="page-item"
+            previousLinkClassName="page-link"
+            nextClassName="page-item"
+            nextLinkClassName="page-link"
+            breakLabel="..."
+            breakClassName="page-item"
+            breakLinkClassName="page-link"
+            containerClassName="pagination"
+            activeClassName="active"
+            renderOnZeroPageCount={null}
+          />
       </Container>
     </div>
   );

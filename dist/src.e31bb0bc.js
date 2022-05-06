@@ -71494,6 +71494,8 @@ function Pilgrim() {
 
   const [itemOffset, setItemOffset] = _react.default.useState(0);
 
+  const [sorting, setSorting] = _react.default.useState("asc");
+
   const itemsPerPage = 18;
 
   _react.default.useEffect(() => {
@@ -71519,17 +71521,30 @@ function Pilgrim() {
   const get_total_supply = async () => {
     const all_supply = await window.contract_nft.nft_total_supply();
     setAllSupply(all_supply);
-    const endOffset = itemOffset + itemsPerPage;
-    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    setCurrentItems([...Array(Number(all_supply)).keys()].slice(itemOffset, endOffset)); // console.log([...Array(Number(all_supply)).keys()])
-
-    setPageCount(Math.ceil(Number(all_supply) / itemsPerPage)); // console.log(all_supply)
-    // Error Gas Limit
+    filter_pagi(all_supply, sorting, null);
   };
 
+  function filter_pagi(supply, filter, search) {
+    let arr = [...Array(Number(supply)).keys()];
+    let endOffset = itemOffset + itemsPerPage;
+
+    if (filter == "desc") {
+      arr = [...Array(Number(supply)).keys()].reverse();
+    }
+
+    setPageCount(Math.ceil(Number(supply) / itemsPerPage));
+
+    if (search) {
+      arr = arr.filter(x => x == search);
+      setPageCount(1);
+    }
+
+    setCurrentItems(arr.slice(itemOffset, endOffset));
+  }
+
   const handlePageClick = event => {
-    const newOffset = event.selected * itemsPerPage % allSupply;
-    console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`);
+    const newOffset = event.selected * itemsPerPage % allSupply; // console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`);
+
     setItemOffset(newOffset);
   };
 
@@ -71544,13 +71559,32 @@ function Pilgrim() {
     src: _headerBot.default,
     className: "img-fluid"
   }), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, {
-    className: "pt-5"
-  }, currentItems && currentItems.map((e, i) => {
+    className: "pt-5 justify-content-end"
+  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+    md: 4,
+    xs: 12,
+    className: "py-2"
+  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Control, {
+    type: "number",
+    placeholder: "Search ID",
+    onChange: e => filter_pagi(allSupply, sorting, e.target.value)
+  })), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+    md: 2,
+    xs: 12,
+    className: "py-2"
+  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Select, {
+    "aria-label": "Sort",
+    onChange: e => filter_pagi(allSupply, e.target.value, null)
+  }, /*#__PURE__*/_react.default.createElement("option", {
+    value: "asc"
+  }, "ID (asc)"), /*#__PURE__*/_react.default.createElement("option", {
+    value: "desc"
+  }, "ID (desc)")))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, currentItems && currentItems.map((e, i) => {
     // console.log(e)
     return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
       md: 2,
       xs: 6,
-      className: "py-3"
+      className: "py-2"
     }, /*#__PURE__*/_react.default.createElement("a", {
       href: `/pilgrim/${e}`
     }, /*#__PURE__*/_react.default.createElement("img", {
@@ -72412,7 +72446,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50338" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60301" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
