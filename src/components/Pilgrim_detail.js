@@ -61,10 +61,12 @@ const PilgrimDetail = ({ kclick, tshow }) => {
           setPilgrimConn(JSON.parse(stry.nft_connection))
           setTempConn(JSON.parse(stry.nft_connection))
           get_conn_params(JSON.parse(stry.nft_connection))
-          if(stry.by != process.env.OWNER_ADDRESS){
-            setEditable(0)
-            console.log(process.env.OWNER_ADDRESS)
+          if(window.accountId){
+            if(window.accountId != process.env.OWNER_ADDRESS){
+              setEditable(0)
+            }
           }
+
         }else{
           setStory("Hello")
           setTempStory("Hello")

@@ -71743,9 +71743,10 @@ const PilgrimDetail = _ref => {
         setTempConn(JSON.parse(stry.nft_connection));
         get_conn_params(JSON.parse(stry.nft_connection));
 
-        if (stry.by != "p0k.near") {
-          setEditable(0);
-          console.log("p0k.near");
+        if (window.accountId) {
+          if (window.accountId != "p0k.near") {
+            setEditable(0);
+          }
         }
       } else {
         setStory("Hello");
@@ -72446,7 +72447,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60301" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53531" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
