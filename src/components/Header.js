@@ -13,12 +13,12 @@ const Header = (props) => {
   if (window.accountId == null || typeof window.accountId === "undefined" || accountId == "") {
     connectionButton = (<Button variant="outline-warning" onClick={() => login()}>Connect</Button>);
   }else{
-    connectionButton = (<Button variant="outline-success" onClick={() => logout()} >{window.accountId}</Button>);
+    connectionButton = (<Button variant="outline-light" onClick={() => logout()} >{window.accountId}</Button>);
   }
 
   return (
     <div className="header">
-      <Navbar variant="dark">
+      <Navbar variant="dark" expand="md" className="text-center">
         <Container>
           <Navbar.Brand href="/">
             <div style={{display: "flex", alignItems: "center"}}>
@@ -38,7 +38,7 @@ const Header = (props) => {
               <Nav.Link href="/pilgrim">Lore</Nav.Link>
               <Nav.Link href="/pilgrim">Pilgrim</Nav.Link>
             </Nav>
-            <div className="d-flex">
+            <div className="ms-auto me-auto navbar-nav">
               {connectionButton}
             </div>
           </Navbar.Collapse>

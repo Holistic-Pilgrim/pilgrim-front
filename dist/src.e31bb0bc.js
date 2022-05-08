@@ -71406,7 +71406,7 @@ const Header = props => {
     }, "Connect");
   } else {
     connectionButton = /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
-      variant: "outline-success",
+      variant: "outline-light",
       onClick: () => (0, _utils.logout)()
     }, window.accountId);
   }
@@ -71414,7 +71414,9 @@ const Header = props => {
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "header"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Navbar, {
-    variant: "dark"
+    variant: "dark",
+    expand: "md",
+    className: "text-center"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Navbar.Brand, {
     href: "/"
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -71441,7 +71443,7 @@ const Header = props => {
   }, "Lore"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav.Link, {
     href: "/pilgrim"
   }, "Pilgrim")), /*#__PURE__*/_react.default.createElement("div", {
-    className: "d-flex"
+    className: "ms-auto me-auto navbar-nav"
   }, connectionButton)))));
 };
 
@@ -71886,7 +71888,7 @@ const PilgrimDetail = _ref => {
 
   function hidechar(val) {
     if (typeof val !== "undefined") {
-      const val1 = val.slice(0, 22);
+      const val1 = val.slice(0, 20);
       return `${val1} ...`;
     }
   }
@@ -71894,10 +71896,10 @@ const PilgrimDetail = _ref => {
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "pilgrim py-5"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, {
-    className: "pilgrim_detail p-5"
+    className: "pilgrim_detail p-2 p-sm-5"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     md: 6,
-    xs: 6,
+    xs: 12,
     className: "py-3 px-4"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, {
     className: "justify-content-md-center"
@@ -71937,7 +71939,7 @@ const PilgrimDetail = _ref => {
     xs: 6,
     className: "py-2"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "with_frame2 py-3 px-4"
+    className: "with_frame2 py-3 px-2"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     xs: 3
   }, /*#__PURE__*/_react.default.createElement("img", {
@@ -71953,7 +71955,7 @@ const PilgrimDetail = _ref => {
     xs: 6,
     className: "py-2"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "with_frame2 py-3 px-4"
+    className: "with_frame2 py-3 px-2"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     xs: 3
   }, /*#__PURE__*/_react.default.createElement("img", {
@@ -71969,7 +71971,7 @@ const PilgrimDetail = _ref => {
     xs: 6,
     className: "py-2"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "with_frame2 py-3 px-4"
+    className: "with_frame2 py-3 px-2"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     xs: 3
   }, /*#__PURE__*/_react.default.createElement("img", {
@@ -71985,7 +71987,7 @@ const PilgrimDetail = _ref => {
     xs: 6,
     className: "py-2"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "with_frame2 py-3 px-4"
+    className: "with_frame2 py-3 px-2"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     xs: 3
   }, /*#__PURE__*/_react.default.createElement("img", {
@@ -71999,15 +72001,15 @@ const PilgrimDetail = _ref => {
     }
   }, "Pet"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata?.attributes?.filter(x => x.trait_type == "Pets")?.[0].value || "-"))))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     md: 6,
-    xs: 6,
+    xs: 12,
     className: "py-3 px-4"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     xs: 12
   }, /*#__PURE__*/_react.default.createElement("b", null, "Story :"), " ", /*#__PURE__*/_react.default.createElement("br", null), lorebox)), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, {
     className: "text-center py-2 justify-content-md-center"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
-    xs: 5,
-    className: `${pilgrimConn?.[0] > 0 ? 'btn-conn' : ''} m-2`
+    xs: 6,
+    className: `${pilgrimConn?.[0] > 0 ? 'btn-conn' : ''}`
   }, isOwned && isEdit ? /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Control, {
     type: "number",
     placeholder: "Enter ID",
@@ -72017,8 +72019,8 @@ const PilgrimDetail = _ref => {
   }) : /*#__PURE__*/_react.default.createElement("a", {
     href: `/pilgrim/${pilgrimConn?.[0]}`
   }, hidechar(conndata0?.title))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
-    xs: 5,
-    className: `${pilgrimConn?.[1] > 0 ? 'btn-conn' : ''} m-2`
+    xs: 6,
+    className: `${pilgrimConn?.[1] > 0 ? 'btn-conn' : ''}`
   }, isOwned && isEdit ? /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Control, {
     type: "number",
     placeholder: "Enter ID",
@@ -72028,8 +72030,8 @@ const PilgrimDetail = _ref => {
   }) : /*#__PURE__*/_react.default.createElement("a", {
     href: `/pilgrim/${pilgrimConn?.[1]}`
   }, hidechar(conndata1?.title))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
-    xs: 5,
-    className: `${pilgrimConn?.[2] > 0 ? 'btn-conn' : ''} m-2`
+    xs: 6,
+    className: `${pilgrimConn?.[2] > 0 ? 'btn-conn' : ''}`
   }, isOwned && isEdit ? /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Control, {
     type: "number",
     placeholder: "Enter ID",
@@ -72039,8 +72041,8 @@ const PilgrimDetail = _ref => {
   }) : /*#__PURE__*/_react.default.createElement("a", {
     href: `/pilgrim/${pilgrimConn?.[2]}`
   }, hidechar(conndata2?.title))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
-    xs: 5,
-    className: `${pilgrimConn?.[3] > 0 ? 'btn-conn' : ''} m-2`
+    xs: 6,
+    className: `${pilgrimConn?.[3] > 0 ? 'btn-conn' : ''}`
   }, isOwned && isEdit ? /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Control, {
     type: "number",
     placeholder: "Enter ID",
@@ -72057,7 +72059,7 @@ const PilgrimDetail = _ref => {
   }, "Save Story") : isOwned && isEditable ? /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
     onClick: e => setIsEdit(true)
   }, "Edit") : "")))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
-    xs: 12,
+    xs: 2,
     md: 2,
     className: "py-2 pb-5"
   }, token_id > 0 ? /*#__PURE__*/_react.default.createElement("a", {
@@ -72066,9 +72068,9 @@ const PilgrimDetail = _ref => {
     src: _left.default,
     height: "40px"
   })) : ""), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
-    xs: 12,
+    xs: 8,
     md: 8,
-    className: "py-2 text-left"
+    className: "py-2 text-center text-sm-start"
   }, /*#__PURE__*/_react.default.createElement("a", {
     href: `https://paras.id/token/623c2cd4294f600e58f46fa2.astrogenfunds.near::${token_id}/${token_id}`,
     target: "_blank"
@@ -72076,9 +72078,9 @@ const PilgrimDetail = _ref => {
     src: _btnParas.default,
     height: "40px"
   }), " ")), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
-    xs: 12,
+    xs: 2,
     md: 2,
-    className: "py-2 text-end"
+    className: "py-2 text-center text-sm-end"
   }, token_id < 1776 ? /*#__PURE__*/_react.default.createElement("a", {
     href: Number(token_id) + 1
   }, /*#__PURE__*/_react.default.createElement("img", {
@@ -72391,7 +72393,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./assets\\alagard.ttf":[["alagard.ed37ea1d.ttf","assets/alagard.ttf"],"assets/alagard.ttf"],"./assets\\menu.png":[["menu.df33ca4b.png","assets/menu.png"],"assets/menu.png"],"./assets\\footer.png":[["footer.4554c39f.png","assets/footer.png"],"assets/footer.png"],"./assets\\book.png":[["book.a93446c8.png","assets/book.png"],"assets/book.png"],"./assets\\frame-mini.png":[["frame-mini.300c2613.png","assets/frame-mini.png"],"assets/frame-mini.png"],"./assets\\btn-conn.png":[["btn-conn.56da059f.png","assets/btn-conn.png"],"assets/btn-conn.png"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
+},{"./assets\\alagard.ttf":[["alagard.ed37ea1d.ttf","assets/alagard.ttf"],"assets/alagard.ttf"],"./assets\\navv.png":[["navv.7dac23d5.png","assets/navv.png"],"assets/navv.png"],"./assets\\footer.png":[["footer.4554c39f.png","assets/footer.png"],"assets/footer.png"],"./assets\\book.png":[["book.a93446c8.png","assets/book.png"],"assets/book.png"],"./assets\\frame-mini.png":[["frame-mini.300c2613.png","assets/frame-mini.png"],"assets/frame-mini.png"],"./assets\\btn-conn.png":[["btn-conn.56da059f.png","assets/btn-conn.png"],"assets/btn-conn.png"],"./assets\\mobile-book.png":[["mobile-book.1ddf1593.png","assets/mobile-book.png"],"assets/mobile-book.png"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -72447,7 +72449,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53531" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59878" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

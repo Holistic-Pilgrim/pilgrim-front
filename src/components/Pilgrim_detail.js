@@ -197,7 +197,7 @@ const PilgrimDetail = ({ kclick, tshow }) => {
 
   function hidechar(val){
     if(typeof val !== "undefined"){
-      const val1 = val.slice(0,22);
+      const val1 = val.slice(0,20);
 
       return (`${val1} ...`);
     }
@@ -205,9 +205,9 @@ const PilgrimDetail = ({ kclick, tshow }) => {
 
   return (
     <div className="pilgrim py-5">
-      <Container className="pilgrim_detail p-5">  
+      <Container className="pilgrim_detail p-2 p-sm-5">  
         <Row>
-          <Col md={6} xs={6} className="py-3 px-4">
+          <Col md={6} xs={12} className="py-3 px-4">
             <Row className="justify-content-md-center">
               <Col md={12} sm={12} className="text-center py-2">
                 <img src={HeaderTop} className="img-fluid" />
@@ -229,7 +229,7 @@ const PilgrimDetail = ({ kclick, tshow }) => {
             </Row>
             <Row className="pt-4">
               <Col xs={6} className="py-2">
-                <div className="with_frame2 py-3 px-4">
+                <div className="with_frame2 py-3 px-2">
                   <Row>
                     <Col xs={3}>
                       <img src={imgAdvantages} className="img-fluid" />
@@ -241,7 +241,7 @@ const PilgrimDetail = ({ kclick, tshow }) => {
                 </div>
               </Col>
               <Col xs={6} className="py-2">
-                <div className="with_frame2 py-3 px-4">
+                <div className="with_frame2 py-3 px-2">
                   <Row>
                     <Col xs={3}>
                       <img src={imgDisadvantages} className="img-fluid" />
@@ -253,7 +253,7 @@ const PilgrimDetail = ({ kclick, tshow }) => {
                 </div>
               </Col>
               <Col xs={6} className="py-2">
-                <div className="with_frame2 py-3 px-4">
+                <div className="with_frame2 py-3 px-2">
                   <Row>
                     <Col xs={3}>
                       <img src={imgSkills} className="img-fluid" />
@@ -265,7 +265,7 @@ const PilgrimDetail = ({ kclick, tshow }) => {
                 </div>
               </Col>
               <Col xs={6} className="py-2">
-                <div className="with_frame2 py-3 px-4">
+                <div className="with_frame2 py-3 px-2">
                   <Row>
                     <Col xs={3}>
                       <img src={imgPets} className="img-fluid" />
@@ -277,12 +277,8 @@ const PilgrimDetail = ({ kclick, tshow }) => {
                 </div>
               </Col>
             </Row>
-
-
-
-            
           </Col>
-          <Col md={6} xs={6} className="py-3 px-4">
+          <Col md={6} xs={12} className="py-3 px-4">
             <Row>
               <Col xs={12}>
                 <b>Story :</b> <br / >
@@ -291,7 +287,7 @@ const PilgrimDetail = ({ kclick, tshow }) => {
               </Col>
             </Row>
             <Row className="text-center py-2 justify-content-md-center">
-              <Col xs={5} className={`${pilgrimConn?.[0]>0 ? 'btn-conn' : ''} m-2`}>
+              <Col xs={6} className={`${pilgrimConn?.[0]>0 ? 'btn-conn' : ''}`}>
                 {isOwned && isEdit? 
                   <Form.Control type="number" placeholder="Enter ID" defaultValue={pilgrimConn?.[0]} onChange={e => updateConn(e.target.value,0) } disabled={tshow.show} />
                 :
@@ -300,7 +296,7 @@ const PilgrimDetail = ({ kclick, tshow }) => {
                   </a>
                 }
               </Col>
-              <Col xs={5} className={`${pilgrimConn?.[1]>0 ? 'btn-conn' : ''} m-2`}>
+              <Col xs={6} className={`${pilgrimConn?.[1]>0 ? 'btn-conn' : ''}`}>
                 {isOwned && isEdit? 
                   <Form.Control type="number" placeholder="Enter ID" defaultValue={pilgrimConn?.[1]} onChange={e => updateConn(e.target.value,1) } disabled={tshow.show} />
                 :
@@ -309,7 +305,7 @@ const PilgrimDetail = ({ kclick, tshow }) => {
                   </a>
                 }  
               </Col>
-              <Col xs={5} className={`${pilgrimConn?.[2]>0 ? 'btn-conn' : ''} m-2`}>
+              <Col xs={6} className={`${pilgrimConn?.[2]>0 ? 'btn-conn' : ''}`}>
                 {isOwned && isEdit? 
                   <Form.Control type="number" placeholder="Enter ID" defaultValue={pilgrimConn?.[2]} onChange={e => updateConn(e.target.value,2) } disabled={tshow.show} />
                 :
@@ -319,7 +315,7 @@ const PilgrimDetail = ({ kclick, tshow }) => {
                 }     
               </Col>
 
-              <Col xs={5} className={`${pilgrimConn?.[3]>0 ? 'btn-conn' : ''} m-2`}>
+              <Col xs={6} className={`${pilgrimConn?.[3]>0 ? 'btn-conn' : ''}`}>
                 
                 {isOwned && isEdit? 
                   <Form.Control type="number" placeholder="Enter ID" defaultValue={pilgrimConn?.[3]} onChange={e => updateConn(e.target.value,3) } disabled={tshow.show} />
@@ -342,17 +338,17 @@ const PilgrimDetail = ({ kclick, tshow }) => {
           </Col>
         </Row>
         <Row>
-          <Col xs={12} md={2} className="py-2 pb-5">
+          <Col xs={2} md={2} className="py-2 pb-5">
             {token_id > 0 ?
               <a href={token_id-1}><img src={btnLeft} height="40px" /></a>
             :
             ""
             }
           </Col>
-          <Col xs={12} md={8} className="py-2 text-left">
+          <Col xs={8} md={8} className="py-2 text-center text-sm-start">
             <a href={`https://paras.id/token/623c2cd4294f600e58f46fa2.astrogenfunds.near::${token_id}/${token_id}`} target="_blank"><img src={btnParas} height="40px" /> </a>
           </Col>
-          <Col xs={12} md={2} className="py-2 text-end">
+          <Col xs={2} md={2} className="py-2 text-center text-sm-end">
             {token_id < 1776 ?
               <a href={Number(token_id)+1}><img src={btnRight} height="40px" /></a>
             :

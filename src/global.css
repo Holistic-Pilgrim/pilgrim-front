@@ -9,9 +9,10 @@ body{
 }
 
 .header{
-  background: url("./assets/menu.png");
+  background: url("./assets/navv.png");
   min-height: 130px;
 }
+
 .footer{
   background: url("./assets/footer.png");
   min-height: 130px;
@@ -45,9 +46,12 @@ body{
 }
 
 .btn-conn{
-  background: url("./assets/btn-conn.png");
-  background-size: 100% 100% !important;
+  background: url("./assets/btn-conn.png");;
+  background-size: 95% 95% !important;
+  background-position: center;
+  background-repeat: no-repeat;
   padding: 15px;
+  text-align: center;
 }
 
 .btn-conn a{
@@ -77,4 +81,34 @@ body{
     background-color: #543927;
     border-radius: 10px;
     border: 0px solid #ffffff;
+  }
+
+  @media (max-width: 767.98px) {
+    .pilgrim{
+      padding: 20px;
+    }
+    .pilgrim_detail{
+
+      background: url("./assets/mobile-book.png");
+      background-size: 100% 100%;
+      /*padding: 30px;*/
+      /*height: 606px*/
+    }
+
+    .header{
+      background: url("./assets/navv.png");
+      /*min-height: 130px;*/
+      background-size: auto 100%;
+      /*background-size: contain;*/
+      /*background-repeat: repeat-x;*/
+      padding-bottom: 20px;
+    }
+
+    .navbar-nav .nav-link {
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+    }
+    
+
+
   }
