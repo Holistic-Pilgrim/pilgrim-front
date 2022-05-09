@@ -5,9 +5,9 @@ import LogoP from '../assets/logo.svg';
 
 function Footer() {
   return (
-    <div className="footer">
+    <div className={`${window.location.pathname=="/" ? 'footer2' :'footer'}`}>
       <Container>
-        <h1 className="text-white text-center" style={{paddingTop: "60px"}}>* HOLISTIC PILGRIMS *</h1>
+        <h1 className="text-center" style={{paddingTop: "60px"}}>* HOLISTIC PILGRIMS *</h1>
       </Container>
     </div>
   );

@@ -71412,7 +71412,7 @@ const Header = props => {
   }
 
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: "header"
+    className: `${window.location.pathname == "/" ? 'header2' : 'header'}`
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Navbar, {
     variant: "dark",
     expand: "md",
@@ -71438,12 +71438,8 @@ const Header = props => {
     href: "/"
   }, "Home"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav.Link, {
     href: "/pilgrim"
-  }, "Holistic"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav.Link, {
-    href: "/pilgrim"
-  }, "Lore"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav.Link, {
-    href: "/pilgrim"
   }, "Pilgrim")), /*#__PURE__*/_react.default.createElement("div", {
-    className: "ms-auto me-auto navbar-nav"
+    className: "d-flex justify-content-center"
   }, connectionButton)))));
 };
 
@@ -71528,6 +71524,7 @@ function Pilgrim() {
 
   function filter_pagi(supply, filter, search) {
     let arr = [...Array(Number(supply)).keys()];
+    let startOffset = itemOffset;
     let endOffset = itemOffset + itemsPerPage;
 
     if (filter == "desc") {
@@ -71537,11 +71534,13 @@ function Pilgrim() {
     setPageCount(Math.ceil(Number(supply) / itemsPerPage));
 
     if (search) {
+      endOffset = 0 + supply;
+      startOffset = 0;
       arr = arr.filter(x => x == search);
       setPageCount(1);
     }
 
-    setCurrentItems(arr.slice(itemOffset, endOffset));
+    setCurrentItems(arr.slice(startOffset, endOffset));
   }
 
   const handlePageClick = event => {
@@ -71590,7 +71589,7 @@ function Pilgrim() {
     }, /*#__PURE__*/_react.default.createElement("a", {
       href: `/pilgrim/${e}`
     }, /*#__PURE__*/_react.default.createElement("img", {
-      src: `https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${e}.png`,
+      src: `/imgs/${e}.png`,
       width: "100%",
       style: {
         cursor: "pointer"
@@ -71621,7 +71620,121 @@ function Pilgrim() {
 
 var _default = Pilgrim;
 exports.default = _default;
-},{"near-api-js":"../node_modules/near-api-js/lib/browser-index.js","react":"../node_modules/react/index.js","react-dom/client":"../node_modules/react-dom/client.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","../assets/header-top.png":"assets/header-top.png","../assets/header-bot.png":"assets/header-bot.png","react-paginate":"../node_modules/react-paginate/dist/react-paginate.js"}],"assets/frame.png":[function(require,module,exports) {
+},{"near-api-js":"../node_modules/near-api-js/lib/browser-index.js","react":"../node_modules/react/index.js","react-dom/client":"../node_modules/react-dom/client.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","../assets/header-top.png":"assets/header-top.png","../assets/header-bot.png":"assets/header-bot.png","react-paginate":"../node_modules/react-paginate/dist/react-paginate.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)?\/[^/]+(?:\?.*)?$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"home.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"./assets\\alagard.ttf":[["alagard.ed37ea1d.ttf","assets/alagard.ttf"],"assets/alagard.ttf"],"./assets\\bc.png":[["bc.355b5529.png","assets/bc.png"],"assets/bc.png"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/Home.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _nearApiJs = require("near-api-js");
+
+var _react = _interopRequireDefault(require("react"));
+
+var _client = _interopRequireDefault(require("react-dom/client"));
+
+var _reactBootstrap = require("react-bootstrap");
+
+var _headerTop = _interopRequireDefault(require("../assets/header-top.png"));
+
+var _headerBot = _interopRequireDefault(require("../assets/header-bot.png"));
+
+require("../home.css");
+
+var _reactPaginate = _interopRequireDefault(require("react-paginate"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Home() {
+  _react.default.useEffect(() => {}, [window.accountId]);
+
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "pilgrim py-5"
+  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, {
+    className: "justify-content-center text-center"
+  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+    sm: 12,
+    md: 6,
+    className: "bgdrop"
+  }, /*#__PURE__*/_react.default.createElement("h1", null, "Welcome to the Holistic Pilgrim"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("p", null, "Holistic Pilgrim has no limits and it does not end, in this world any action has a connection with the next, even if you are not aware of it."), /*#__PURE__*/_react.default.createElement("p", null, "There is no good or bad, no truth or lies. In this world, you can be both a desperate space alien and a cute old man who owns a small bookstore."), /*#__PURE__*/_react.default.createElement("p", null, "And most importantly, everything in this world is connected.")))));
+}
+
+var _default = Home;
+exports.default = _default;
+},{"near-api-js":"../node_modules/near-api-js/lib/browser-index.js","react":"../node_modules/react/index.js","react-dom/client":"../node_modules/react-dom/client.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","../assets/header-top.png":"assets/header-top.png","../assets/header-bot.png":"assets/header-bot.png","../home.css":"home.css","react-paginate":"../node_modules/react-paginate/dist/react-paginate.js"}],"assets/frame.png":[function(require,module,exports) {
 module.exports = "/frame.557fd4c2.png";
 },{}],"assets/advantages.png":[function(require,module,exports) {
 module.exports = "/advantages.be75f2c1.png";
@@ -71936,70 +72049,82 @@ const PilgrimDetail = _ref => {
   })))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, {
     className: "pt-4"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
-    xs: 6,
+    xs: 12,
+    sm: 6,
     className: "py-2"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "with_frame2 py-3 px-2"
+    className: "with_frame2 py-3 px-4"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     xs: 3
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: _advantages.default,
     className: "img-fluid"
   })), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
-    xs: 8
+    xs: 9
   }, /*#__PURE__*/_react.default.createElement("b", {
     style: {
       color: "#543927"
     }
-  }, "Advantages"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata?.advantages?.[0].name || "-"))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
-    xs: 6,
+  }, "Advantages"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata?.advantages?.map((e, i) => {
+    return `${e.name}, `;
+  }) || "-"))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+    xs: 12,
+    sm: 6,
     className: "py-2"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "with_frame2 py-3 px-2"
+    className: "with_frame2 py-3 px-4"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     xs: 3
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: _disadvantages.default,
     className: "img-fluid"
   })), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
-    xs: 8
+    xs: 9
   }, /*#__PURE__*/_react.default.createElement("b", {
     style: {
       color: "#543927"
     }
-  }, "Disadvantages"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata?.disadvantages?.[0].name || "-"))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
-    xs: 6,
+  }, "Disadvantages"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata?.disadvantages?.map((e, i) => {
+    return `${e.name}, `;
+  }) || "-"))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+    xs: 12,
+    sm: 6,
     className: "py-2"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "with_frame2 py-3 px-2"
+    className: "with_frame2 py-3 px-4"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     xs: 3
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: _skills.default,
     className: "img-fluid"
   })), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
-    xs: 8
+    xs: 9
   }, /*#__PURE__*/_react.default.createElement("b", {
     style: {
       color: "#543927"
     }
-  }, "Skills"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata?.skills?.[0].name || "-"))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
-    xs: 6,
+  }, "Skills"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata?.skills?.map((e, i) => {
+    return `${e.name}, `;
+  }) || "-"))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+    xs: 12,
+    sm: 6,
     className: "py-2"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "with_frame2 py-3 px-2"
+    className: "with_frame2 py-3 px-4"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     xs: 3
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: _pets.default,
     className: "img-fluid"
   })), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
-    xs: 8
+    xs: 9
   }, /*#__PURE__*/_react.default.createElement("b", {
     style: {
       color: "#543927"
     }
-  }, "Pet"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata?.attributes?.filter(x => x.trait_type == "Pets")?.[0].value || "-"))))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+  }, "Pet"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("small", null, metadata?.attributes?.filter(x => x.trait_type == "Pets")?.map((e, i) => {
+    return `${e.value}, `;
+  }) || "-"))))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
     md: 6,
     xs: 12,
     className: "py-3 px-4"
@@ -72111,9 +72236,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function Footer() {
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: "footer"
+    className: `${window.location.pathname == "/" ? 'footer2' : 'footer'}`
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, null, /*#__PURE__*/_react.default.createElement("h1", {
-    className: "text-white text-center",
+    className: "text-center",
     style: {
       paddingTop: "60px"
     }
@@ -72138,6 +72263,8 @@ var _Header = _interopRequireDefault(require("./components/Header"));
 
 var _Pilgrim = _interopRequireDefault(require("./components/Pilgrim"));
 
+var _Home = _interopRequireDefault(require("./components/Home"));
+
 var _Pilgrim_detail = _interopRequireDefault(require("./components/Pilgrim_detail"));
 
 var _Footer = _interopRequireDefault(require("./components/Footer"));
@@ -72159,7 +72286,9 @@ function App() {
     setTShow(val);
   };
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.ToastContainer, {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: `${window.location.pathname == "/" ? 'plcontent2' : 'plcontent'}`
+  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.ToastContainer, {
     position: "top-end",
     className: "p-3",
     style: {
@@ -72176,10 +72305,10 @@ function App() {
     className: "me-auto"
   }, tshow.msg)), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Toast.Body, null, tshow.head))), /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Routes, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/",
-    element: /*#__PURE__*/_react.default.createElement(_Pilgrim.default, null)
+    element: /*#__PURE__*/_react.default.createElement(_Home.default, null)
   }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     index: true,
-    element: /*#__PURE__*/_react.default.createElement(_Pilgrim.default, null)
+    element: /*#__PURE__*/_react.default.createElement(_Home.default, null)
   })), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/pilgrim",
     element: /*#__PURE__*/_react.default.createElement(_Pilgrim.default, null)
@@ -72203,39 +72332,7 @@ function App() {
 
 var _default = App;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-dom/client":"../node_modules/react-dom/client.js","./components/Header":"components/Header.js","./components/Pilgrim":"components/Pilgrim.js","./components/Pilgrim_detail":"components/Pilgrim_detail.js","./components/Footer":"components/Footer.js","react-router-dom":"../node_modules/react-router-dom/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)?\/[^/]+(?:\?.*)?$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../node_modules/parcel-bundler/src/builtins/bundle-loader.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom/client":"../node_modules/react-dom/client.js","./components/Header":"components/Header.js","./components/Pilgrim":"components/Pilgrim.js","./components/Home":"components/Home.js","./components/Pilgrim_detail":"components/Pilgrim_detail.js","./components/Footer":"components/Footer.js","react-router-dom":"../node_modules/react-router-dom/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-loader.js":[function(require,module,exports) {
 var getBundleURL = require('./bundle-url').getBundleURL;
 
 function loadBundlesLazy(bundles) {
@@ -72347,42 +72444,7 @@ const reportWebVitals = onPerfEntry => {
 
 var _default = reportWebVitals;
 exports.default = _default;
-},{"_bundle_loader":"../node_modules/parcel-bundler/src/builtins/bundle-loader.js","web-vitals":[["web-vitals.78b1c500.js","../node_modules/web-vitals/dist/web-vitals.js"],"web-vitals.78b1c500.js.map","../node_modules/web-vitals/dist/web-vitals.js"]}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../node_modules/bootstrap/dist/css/bootstrap.min.css":[function(require,module,exports) {
+},{"_bundle_loader":"../node_modules/parcel-bundler/src/builtins/bundle-loader.js","web-vitals":[["web-vitals.78b1c500.js","../node_modules/web-vitals/dist/web-vitals.js"],"web-vitals.78b1c500.js.map","../node_modules/web-vitals/dist/web-vitals.js"]}],"../node_modules/bootstrap/dist/css/bootstrap.min.css":[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
@@ -72393,7 +72455,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./assets\\alagard.ttf":[["alagard.ed37ea1d.ttf","assets/alagard.ttf"],"assets/alagard.ttf"],"./assets\\navv.png":[["navv.7dac23d5.png","assets/navv.png"],"assets/navv.png"],"./assets\\footer.png":[["footer.4554c39f.png","assets/footer.png"],"assets/footer.png"],"./assets\\book.png":[["book.a93446c8.png","assets/book.png"],"assets/book.png"],"./assets\\frame-mini.png":[["frame-mini.300c2613.png","assets/frame-mini.png"],"assets/frame-mini.png"],"./assets\\btn-conn.png":[["btn-conn.56da059f.png","assets/btn-conn.png"],"assets/btn-conn.png"],"./assets\\mobile-book.png":[["mobile-book.1ddf1593.png","assets/mobile-book.png"],"assets/mobile-book.png"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
+},{"./assets\\alagard.ttf":[["alagard.ed37ea1d.ttf","assets/alagard.ttf"],"assets/alagard.ttf"],"./assets\\menu.png":[["menu.df33ca4b.png","assets/menu.png"],"assets/menu.png"],"./assets\\footer.png":[["footer.4554c39f.png","assets/footer.png"],"assets/footer.png"],"./assets\\book.png":[["book.a93446c8.png","assets/book.png"],"assets/book.png"],"./assets\\frame-mini.png":[["frame-mini.300c2613.png","assets/frame-mini.png"],"assets/frame-mini.png"],"./assets\\btn-conn.png":[["btn-conn.56da059f.png","assets/btn-conn.png"],"assets/btn-conn.png"],"./assets\\mobile-book.png":[["mobile-book.1ddf1593.png","assets/mobile-book.png"],"assets/mobile-book.png"],"./assets\\navv.png":[["navv.7dac23d5.png","assets/navv.png"],"assets/navv.png"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -72449,7 +72511,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59878" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50199" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

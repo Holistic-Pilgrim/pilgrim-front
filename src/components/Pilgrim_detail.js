@@ -228,50 +228,50 @@ const PilgrimDetail = ({ kclick, tshow }) => {
               </Col>
             </Row>
             <Row className="pt-4">
-              <Col xs={6} className="py-2">
-                <div className="with_frame2 py-3 px-2">
+              <Col xs={12} sm={6} className="py-2">
+                <div className="with_frame2 py-3 px-4">
                   <Row>
                     <Col xs={3}>
                       <img src={imgAdvantages} className="img-fluid" />
                     </Col>
-                    <Col xs={8}>
-                      <b style={{color: "#543927"}}>Advantages</b><br/><small>{(metadata?.advantages?.[0].name || "-")}</small>
+                    <Col xs={9}>
+                      <b style={{color: "#543927"}}>Advantages</b><br/><small>{(metadata?.advantages?.map((e,i)=>{ return(`${e.name}, `)}) || "-")}</small>
                     </Col>
                   </Row>
                 </div>
               </Col>
-              <Col xs={6} className="py-2">
-                <div className="with_frame2 py-3 px-2">
+              <Col xs={12} sm={6} className="py-2">
+                <div className="with_frame2 py-3 px-4">
                   <Row>
                     <Col xs={3}>
                       <img src={imgDisadvantages} className="img-fluid" />
                     </Col>
-                    <Col xs={8}>
-                      <b style={{color: "#543927"}}>Disadvantages</b><br/><small>{(metadata?.disadvantages?.[0].name || "-")}</small>
+                    <Col xs={9}>
+                      <b style={{color: "#543927"}}>Disadvantages</b><br/><small>{(metadata?.disadvantages?.map((e,i)=>{ return(`${e.name}, `)}) || "-")}</small>
                     </Col>
                   </Row>
                 </div>
               </Col>
-              <Col xs={6} className="py-2">
-                <div className="with_frame2 py-3 px-2">
+              <Col xs={12} sm={6} className="py-2">
+                <div className="with_frame2 py-3 px-4">
                   <Row>
                     <Col xs={3}>
                       <img src={imgSkills} className="img-fluid" />
                     </Col>
-                    <Col xs={8}>
-                      <b style={{color: "#543927"}}>Skills</b><br/><small>{(metadata?.skills?.[0].name || "-")}</small>
+                    <Col xs={9}>
+                      <b style={{color: "#543927"}}>Skills</b><br/><small>{(metadata?.skills?.map((e,i)=>{ return(`${e.name}, `)}) || "-")}</small>
                     </Col>
                   </Row>
                 </div>
               </Col>
-              <Col xs={6} className="py-2">
-                <div className="with_frame2 py-3 px-2">
+              <Col xs={12} sm={6} className="py-2">
+                <div className="with_frame2 py-3 px-4">
                   <Row>
                     <Col xs={3}>
                       <img src={imgPets} className="img-fluid" />
                     </Col>
-                    <Col xs={8}>
-                      <b style={{color: "#543927"}}>Pet</b><br/><small>{(metadata?.attributes?.filter(x => x.trait_type == "Pets" )?.[0].value || "-")}</small>
+                    <Col xs={9}>
+                      <b style={{color: "#543927"}}>Pet</b><br/><small>{(metadata?.attributes?.filter(x => x.trait_type == "Pets" )?.map((e,i)=>{ return(`${e.value}, `)}) || "-")}</small>
                     </Col>
                   </Row>
                 </div>

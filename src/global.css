@@ -3,19 +3,21 @@
   src: url(./assets/alagard.ttf);
 }
 
-body{
+.plcontent{
   background-color: #E9D2B8;
   font-family: alagard;
+  min-height: 100vh;
 }
 
 .header{
-  background: url("./assets/navv.png");
+  background: url("./assets/menu.png");
   min-height: 130px;
 }
 
 .footer{
   background: url("./assets/footer.png");
   min-height: 130px;
+  color: white;
 }
 
 .nav-link{
@@ -43,6 +45,7 @@ body{
   background: url("./assets/frame-mini.png");
   background-size: 100% 100% !important;
   line-height: 15px;
+  min-height: 79px;
 }
 
 .btn-conn{

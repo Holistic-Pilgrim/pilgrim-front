@@ -1,0 +1,29 @@
+@font-face {
+  font-family: alagard;
+  src: url(/alagard.ed37ea1d.ttf);
+}
+
+.plcontent{
+  background: url(/bc.355b5529.png);
+  background-size: cover !important;
+  font-family: alagard;
+  min-height: 100vh;
+}
+
+.header{
+  background: transparent !important;
+}
+
+.footer{
+  background: transparent !important;
+  color: rgba(var(--bs-black-rgb),var(--bs-text-opacity))!important;
+}
+
+.bgdrop{
+  background: rgba(18, 33, 44, 0.36);
+  backdrop-filter: blur(26px);
+  padding: 2em !important;
+  color: white;
+}
+
+/*# sourceMappingURL=/home.ad0b407b.css.map */

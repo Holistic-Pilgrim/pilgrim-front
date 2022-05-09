@@ -50,6 +50,7 @@ function Pilgrim() {
 
   function filter_pagi(supply,filter,search){
     let arr = ([...Array(Number(supply)).keys()])
+    let startOffset = itemOffset;
     let endOffset = itemOffset + itemsPerPage;
     if(filter=="desc"){
       arr = ([...Array(Number(supply)).keys()]).reverse()
@@ -58,11 +59,14 @@ function Pilgrim() {
     setPageCount(Math.ceil(Number(supply) / itemsPerPage));
 
     if(search){
+
+      endOffset = 0 + supply;
+      startOffset = 0;
       arr = arr.filter(x => x == search)
       setPageCount(1)
     }
 
-    setCurrentItems(arr.slice(itemOffset, endOffset));
+    setCurrentItems(arr.slice(startOffset, endOffset));
   }
 
   const handlePageClick = (event) => {
@@ -98,7 +102,7 @@ function Pilgrim() {
                 <Col md={2} xs={6} className="py-2">
                   <a href={`/pilgrim/${e}`}>
                     <img
-                      src={`https://cloudflare-ipfs.com/ipfs/bafybeicx2okilwtljyac2b5prutqodxkouyvfgysuav6pspoznn2n2qs2i/${e}.png`}
+                      src={`/imgs/${e}.png`}
                       width="100%"
                       style={{ cursor: "pointer" }}
                       className="img-fluid"

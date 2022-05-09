@@ -17,7 +17,7 @@ const Header = (props) => {
   }
 
   return (
-    <div className="header">
+    <div className={`${window.location.pathname=="/" ? 'header2' :'header'}`}>
       <Navbar variant="dark" expand="md" className="text-center">
         <Container>
           <Navbar.Brand href="/">
@@ -34,11 +34,9 @@ const Header = (props) => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto me-auto">
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/pilgrim">Holistic</Nav.Link>
-              <Nav.Link href="/pilgrim">Lore</Nav.Link>
               <Nav.Link href="/pilgrim">Pilgrim</Nav.Link>
             </Nav>
-            <div className="ms-auto me-auto navbar-nav">
+            <div className="d-flex justify-content-center">
               {connectionButton}
             </div>
           </Navbar.Collapse>

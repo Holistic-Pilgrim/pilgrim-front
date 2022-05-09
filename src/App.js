@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Header from './components/Header';
 import Pilgrim from './components/Pilgrim';
+import Home from './components/Home';
 import PilgrimDetail from './components/Pilgrim_detail';
 import Footer from './components/Footer';
 import {
@@ -19,7 +20,7 @@ function App() {
     setTShow(val)
   }
   return (
-    <>
+    <div className={`${window.location.pathname=="/" ? 'plcontent2' :'plcontent'}`}>
     <ToastContainer position="top-end" className="p-3" style={{zIndex: 9999}}>
       <Toast onClose={() => setTShow(false)} show={tshow.show} >
         <Toast.Header>
@@ -38,8 +39,8 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Pilgrim />}>
-            <Route index element={<Pilgrim />} />
+          <Route path="/" element={<Home />}>
+            <Route index element={<Home />} />
           </Route>
           <Route path="/pilgrim" element={<Pilgrim />}>
             <Route index element={<Pilgrim />} />
@@ -51,7 +52,7 @@ function App() {
       </BrowserRouter>
 
       <Footer />
-    </>
+    </div>
   );
 }
 
